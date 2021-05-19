@@ -18,17 +18,18 @@ export class RecoleccionDatosComponent implements AfterViewInit {
   public categoriasSeleccionadas = this.ticketService.ticketInformation.recoleccionDatos.categoriasSeleccionadas;
 
   constructor(public ticketService: TicketService, private router: Router,
-    public alertController: AlertController, private restService: RestService) { 
+    public alertController: AlertController, private restService: RestService) {
     // Volver de proceso ya que no ha pasado el filtro
     if(!ticketService.checkTicketExplicacion()){
       this.router.navigate(['explicacion'])
     }
 
     console.log(this.categoriasSeleccionadas.map((item) => " " + item['nombre']))
-      
+
     // Traemos los datos de la api (Llamada asíncrona)
     restService.getAllData().subscribe((data) => {
       if(data){
+        this.hideLoader()
         this.allDataRest = data;
         console.log("Languajes retrieved:" + this.allDataRest.map((item) => " " + item['nombre']))
       }
@@ -68,13 +69,13 @@ export class RecoleccionDatosComponent implements AfterViewInit {
     console.log("Saving ticket with selected categorias: " + this.categoriasSeleccionadas.map((item) => " " + item['nombre']))
 
     if(this.ticketService.checkTicketRecoleccionDatos()){
-      console.log("Redirect to: cuestionario") 
+      console.log("Redirect to: cuestionario")
       this.router.navigate(['cuestionario'])
     } else {
       console.log("Unasigned required attributes, not redirecting")
     }
   }
-  
+
   public onBackPage(){
     console.log("Redirect to: explicacion")
     this.router.navigate(['explicacion'])
@@ -95,5 +96,9 @@ export class RecoleccionDatosComponent implements AfterViewInit {
         }
       })
       return seHaEncontrado;
-    }
+  }
+
+  public hideLoader(): void{
+    document.getElementById('loading').style.display = 'none';
+  }
 }
