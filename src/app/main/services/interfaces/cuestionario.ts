@@ -26,6 +26,7 @@ export interface Categoria {
   puntuacion: number;
   recomendacion: string;
   preguntas: Pregunta[];
+  isChecked: boolean;
 }
 
 export interface Area {

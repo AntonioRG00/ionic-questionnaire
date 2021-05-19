@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Idioma, Area, Categoria } from '../interfaces/cuestionario';
+import { RestService } from '../apirest/rest.service'
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,9 @@ export class TicketService {
 
   /** Ticket con la información del proceso del usuario */
   ticketInformation = {
+    data: {
+      allDataRest: [] = new Array<Idioma>()
+    },
     explicacion: {
       idioma: ''
     },
@@ -24,7 +28,13 @@ export class TicketService {
     }
   };
 
-  constructor() { }
+  constructor(private restService: RestService) {
+    restService.getAllData().subscribe((data) =>{
+      if(data){
+        this.ticketInformation.data.allDataRest = data;
+      }
+    })
+  }
 
   /** Filtro para los datos 'explicacion' del ticket (True si pasa el filtrado) */
   public checkTicketExplicacion(): boolean{
