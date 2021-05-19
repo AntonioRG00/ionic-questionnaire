@@ -17,7 +17,6 @@ export class TicketService {
       idioma: ''
     },
     recoleccionDatos: {
-      categoriasSeleccionadas: [] = new Array<Categoria>(),
       perfilUsuario: ''
     },
     cuestionario: {
@@ -47,11 +46,16 @@ export class TicketService {
 
   /** Filtro para los datos 'RecoleccionDatos' del ticket (True si pasa el filtrado) */
   public checkTicketRecoleccionDatos(): boolean{
-    let explicacion = this.ticketInformation.explicacion;
+    let recoleccionDatos = this.ticketInformation.recoleccionDatos;
     
-    //TODO IMPLEMENTAR
+    if(!recoleccionDatos.perfilUsuario.length) return false;
 
-    return;
+    let algunaCategoriaSeleccionada = false;
+    this.ticketInformation.data.allDataRest.forEach(x => x.areas.forEach(y => 
+      y.categorias.forEach(z => z.isChecked ? algunaCategoriaSeleccionada=true:"")))
+    if(!algunaCategoriaSeleccionada) return false;
+
+    return true;
   }
 
   /** Filtro para los datos 'Cuestionario' del ticket (True si pasa el filtrado) */
