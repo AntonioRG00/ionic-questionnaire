@@ -1,0 +1,38 @@
+<ion-list>
+    <h1 class="encabezado centrado">Seleccionar áreas de interés</h1>
+    <div *ngFor="let idioma of allDataRest">
+      <div *ngFor="let area of idioma.areas">
+        <ion-list-header>
+          <h2>{{area.nombre}}</h2>
+        </ion-list-header>
+        <ion-list>
+          <ion-item *ngFor="let cat of area.categorias">
+            <ion-label >{{cat.nombre}} | {{cat.descripcion}}</ion-label>
+            <ion-checkbox [id]="cat.id" (ionChange)="onCheckboxChange(cat, $event)"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  <h1 class="encabezado centrado">Otros datos de interés</h1>
+  <ion-item>
+    <ion-label>Selecciona un perfil</ion-label>
+    <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="onPerfilSelectChange($event.target.value)">
+      <ion-select-option value="centro">Centro educativo</ion-select-option>
+      <ion-select-option value="empresa">Empresa</ion-select-option>
+      <ion-select-option value="alumno">Alumno</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+<div class="footer">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-button expand="block" color="tertiary" (click)="onBackPage()">Volver</ion-button>
+      </ion-col>
+      <ion-col col-6>
+        <ion-button expand="block" color="primary" (click)="onNextPage()">Siguiente</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

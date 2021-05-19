@@ -1,0 +1,8 @@
+{
+  "name": "IonicQuestionnaire",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "6a4c19d1"
+}

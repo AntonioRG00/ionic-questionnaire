@@ -1,0 +1,34 @@
+<div>
+  <h1 class="encabezado centrado">Escaneo Rápido: Instrucciones</h1>
+  <div class="magin10">
+    <h2>El Análisis Rápido se agrupa en cuatro temas (grupos temáticos):</h2>
+    <ol>
+      <li>Visión y política</li>
+      <li>Organización</li>
+      <li>Estudiante</li>
+      <li>Profesor</li>
+    </ol>
+    <p>Cada tema está dividido en cuatro áreas de atención (16 áreas de atención en total)</p>
+  </div>
+  <div class="margin10">
+    <ion-item>
+      <ion-label>Selecciona un idioma</ion-label>
+      <ion-select [value]="ticketService.ticketInformation.explicacion.idioma" (ionChange)="onIdiomaSelectChange($event.target.value)">
+        <ion-select-option value="español">Español</ion-select-option>
+        <ion-select-option value="ingles">Inglés</ion-select-option>
+        <ion-select-option value="aleman">Alemán</ion-select-option>
+        <ion-select-option value="italiano">Italiano</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+</div>
+
+<div class="footer">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-button expand="block" color="primary" (click)="onNextPage()">Siguiente</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
