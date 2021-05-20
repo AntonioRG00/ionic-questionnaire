@@ -9,6 +9,7 @@ import { MenuItem } from 'primeng/api';
 export class MainPage implements OnInit {
 
   menuPorPasos: MenuItem[];
+  menuPorPasosMovil: MenuItem[];
 
   constructor() { }
 
@@ -18,6 +19,12 @@ export class MainPage implements OnInit {
       {label: 'Recolección de datos', routerLink: 'recoleccionDatos'},
       {label: 'Cuestionario', routerLink: 'cuestionario'},
       {label: 'Recomendación', routerLink: 'recomendacion'}
+    ];
+    this.menuPorPasosMovil = [
+      {label: '', routerLink: 'explicacion'},
+      {label: '', routerLink: 'recoleccionDatos'},
+      {label: '', routerLink: 'cuestionario'},
+      {label: '', routerLink: 'recomendacion'}
     ];
   }
 
