@@ -10,19 +10,24 @@ import { Idioma, Area, Categoria } from '../services/interfaces/cuestionario';
   templateUrl: './recoleccion-datos.component.html',
   styleUrls: ['./recoleccion-datos.component.scss'],
 })
-export class RecoleccionDatosComponent implements AfterViewInit {
-
-  public allDataRest: Idioma[];
-
-  /** Copia por referencia de las categorias seleccionadas del ticket */
-  public categoriasSeleccionadas = this.ticketService.ticketInformation.recoleccionDatos.categoriasSeleccionadas;
+export class RecoleccionDatosComponent {
 
   constructor(public ticketService: TicketService, private router: Router,
     public alertController: AlertController, private restService: RestService) {
+
+      
+
+
     // Volver de proceso ya que no ha pasado el filtro
     if(!ticketService.checkTicketExplicacion()){
       this.router.navigate(['explicacion'])
     }
+
+
+    // Sacamos las categorías seleccionadas anteriormente
+    console.log("Selected Categorias:" + this.ticketService.ticketInformation.data.allDataRest
+      .map((idioma) => idioma['areas'].map((area) => area['categorias'].map((categoria) => 
+        categoria.isChecked ? categoria.nombre:"").join(" ")).join("")).join(""))
 
     console.log(this.categoriasSeleccionadas.map((item) => " " + item['nombre']))
 
@@ -63,11 +68,10 @@ export class RecoleccionDatosComponent implements AfterViewInit {
     } else {
       this.categoriasSeleccionadas.splice(this.categoriasSeleccionadas.indexOf(categoriaSeleccionada), 1)
     }
+
   }
 
   public onNextPage(){
-    console.log("Saving ticket with selected categorias: " + this.categoriasSeleccionadas.map((item) => " " + item['nombre']))
-
     if(this.ticketService.checkTicketRecoleccionDatos()){
       console.log("Redirect to: cuestionario")
       this.router.navigate(['cuestionario'])
@@ -80,6 +84,9 @@ export class RecoleccionDatosComponent implements AfterViewInit {
     console.log("Redirect to: explicacion")
     this.router.navigate(['explicacion'])
   }
+
+}
+
 
   public onPerfilSelectChange(profile: string){
     console.log("Profile selected: " + profile)
@@ -102,3 +109,4 @@ export class RecoleccionDatosComponent implements AfterViewInit {
     document.getElementById('loading').style.display = 'none';
   }
 }
+
