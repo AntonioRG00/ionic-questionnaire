@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Idioma, Area, Categoria } from '../interfaces/cuestionario';
+import { RestService } from '../apirest/rest.service'
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,13 @@ export class TicketService {
 
   /** Ticket con la información del proceso del usuario */
   ticketInformation = {
+    data: {
+      allDataRest: [] = new Array<Idioma>()
+    },
     explicacion: {
       idioma: ''
     },
     recoleccionDatos: {
-      categoriasSeleccionadas: [] = new Array<Categoria>(),
       perfilUsuario: ''
     },
     cuestionario: {
@@ -24,7 +27,13 @@ export class TicketService {
     }
   };
 
-  constructor() { }
+  constructor(private restService: RestService) {
+    restService.getAllData().subscribe((data) =>{
+      if(data){
+        this.ticketInformation.data.allDataRest = data;
+      }
+    })
+  }
 
   /** Filtro para los datos 'explicacion' del ticket (True si pasa el filtrado) */
   public checkTicketExplicacion(): boolean{
@@ -37,11 +46,16 @@ export class TicketService {
 
   /** Filtro para los datos 'RecoleccionDatos' del ticket (True si pasa el filtrado) */
   public checkTicketRecoleccionDatos(): boolean{
-    let explicacion = this.ticketInformation.explicacion;
+    let recoleccionDatos = this.ticketInformation.recoleccionDatos;
     
-    //TODO IMPLEMENTAR
+    if(!recoleccionDatos.perfilUsuario.length) return false;
 
-    return;
+    let algunaCategoriaSeleccionada = false;
+    this.ticketInformation.data.allDataRest.forEach(x => x.areas.forEach(y => 
+      y.categorias.forEach(z => z.isChecked ? algunaCategoriaSeleccionada=true:"")))
+    if(!algunaCategoriaSeleccionada) return false;
+
+    return true;
   }
 
   /** Filtro para los datos 'Cuestionario' del ticket (True si pasa el filtrado) */

@@ -1,7 +1,9 @@
 <ion-list>
     <h1 class="encabezado centrado">Seleccionar áreas de interés</h1>
+    
     <div class="centrado" id="loading"><br><ion-spinner name="lines"></ion-spinner><br></div>
-    <div *ngFor="let idioma of allDataRest">
+    <div *ngFor="let idioma of ticketService.ticketInformation.data.allDataRest">
+
       <div *ngFor="let area of idioma.areas">
         <ion-list-header>
           <h2>{{area.nombre}}</h2>
@@ -9,7 +11,7 @@
         <ion-list>
           <ion-item *ngFor="let cat of area.categorias">
             <ion-label >{{cat.nombre}} | {{cat.descripcion}}</ion-label>
-            <ion-checkbox [id]="cat.id" (ionChange)="onCheckboxChange(cat, $event)"></ion-checkbox>
+            <ion-checkbox [checked]="cat.isChecked" [(ngModel)]="cat.isChecked"></ion-checkbox>
           </ion-item>
         </ion-list>
       </div>
@@ -17,7 +19,7 @@
   <h1 class="encabezado centrado">Otros datos de interés</h1>
   <ion-item>
     <ion-label>Selecciona un perfil</ion-label>
-    <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="onPerfilSelectChange($event.target.value)">
+    <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="ticketService.ticketInformation.recoleccionDatos.perfilUsuario = $event.target.value">
       <ion-select-option value="centro">Centro educativo</ion-select-option>
       <ion-select-option value="empresa">Empresa</ion-select-option>
       <ion-select-option value="alumno">Alumno</ion-select-option>
