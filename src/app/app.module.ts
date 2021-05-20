@@ -12,11 +12,14 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
+import { SplashComponent } from './components/splash/splash.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,
+  SplashComponent],
   entryComponents: [],
-  imports: [HttpClientModule, HttpClientInMemoryWebApiModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, ChartModule],
+  imports: [HttpClientModule, HttpClientInMemoryWebApiModule, BrowserModule,
+    IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, ChartModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
