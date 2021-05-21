@@ -36,6 +36,10 @@ export class ExplicacionComponent implements OnInit {
 
   public onIdiomaSelectChange(languaje: string){
     console.log("Languaje selected: " + languaje)
-    this.ticketService.ticketInformation.explicacion.idioma = languaje
+
+    this.ticketService.ticketInformation.explicacion.idiomaSeleccionado = 
+      this.ticketService.ticketInformation.data.allDataRest.find(x => x.nombre.toLowerCase() == languaje.toLowerCase())  
+
+    console.log("Idioma seleccionado: " + this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.nombre)
   }
 }

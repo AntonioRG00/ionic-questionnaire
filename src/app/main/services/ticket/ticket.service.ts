@@ -14,7 +14,7 @@ export class TicketService {
       allDataRest: [] = new Array<Idioma>()
     },
     explicacion: {
-      idioma: ''
+      idiomaSeleccionado: new Object as Idioma
     },
     recoleccionDatos: {
       perfilUsuario: ''
@@ -49,7 +49,7 @@ export class TicketService {
   public checkTicketExplicacion(): boolean{
     let explicacion = this.ticketInformation.explicacion;
 
-    if(!explicacion.idioma) return false;
+    if(explicacion.idiomaSeleccionado.id == null) return false;
 
     return true;
   }
