@@ -25,14 +25,18 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-* {
+/** {
   font-family: 'Rubik', sans-serif !important;
+}*/
+
+*{
+  font-family: 'Open Sans', sans-serif !important;
 }
 
 .encabezado {
     color: #FFFFFF;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 35px;
     background-color: #4E8FFD;
     border-radius: 5px;
     margin: 10px;
@@ -48,11 +52,22 @@
     align-items: center;
 }
 
-.footer {
-    position: fixed;
+.sticky-footer {
+    position: sticky;
     left: 0;
     bottom: 0;
     width: 100%;
     color: white;
     text-align: center;
 }
+
+.fixed-footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+
