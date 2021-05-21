@@ -31,8 +31,18 @@
     </ion-col>
   </ion-row>
 </ion-grid>-->
-<div class="fixed-footer">
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <div class="centrado">
+            <ion-button color="primary" (click)="onNextPage()"><ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
+          </div>
 
-    <ion-button color="primary" (click)="onNextPage()"><ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-</div>
+  </ion-toolbar>
+</ion-footer>

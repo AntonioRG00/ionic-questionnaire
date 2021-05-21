@@ -11,11 +11,11 @@ import { AlertController } from '@ionic/angular';
 export class CuestionarioComponent implements OnInit {
 
   constructor(public ticketService: TicketService, private router: Router,
-    public alertController: AlertController) { 
+    public alertController: AlertController) {
 
       // Volver de proceso ya que no ha pasado el filtro
       if(!ticketService.checkTicketRecoleccionDatos()){
-        // this.router.navigate(['recoleccionDatos'])
+         this.router.navigate(['recoleccionDatos'])
       }
     }
 
@@ -23,13 +23,13 @@ export class CuestionarioComponent implements OnInit {
 
   public onNextPage(){
     if(this.ticketService.checkTicketCuestionario()){
-      console.log("Redirect to: recomendacion") 
+      console.log("Redirect to: recomendacion")
       this.router.navigate(['recomendacion'])
     } else {
       console.log("Unasigned required attributes, not redirecting")
     }
   }
-  
+
   public onBackPage(){
     console.log("Redirect to: recoleccionDatos")
     this.router.navigate(['recoleccionDatos'])
