@@ -40,8 +40,6 @@ export class TicketService {
             splash.remove();
           }, 5000);
 
-        } else {
-          console.log('Splash no existe');
         }
       }
     })

@@ -1,7 +1,7 @@
 <ion-list>
     <h1 class="encabezado centrado">Seleccionar áreas de interés</h1>
-    
-    <div class="centrado" id="loading"><br><ion-spinner name="lines"></ion-spinner><br></div>
+
+    <!--<div class="centrado" id="loading"><br><ion-spinner name="lines"></ion-spinner><br></div>-->
     <div *ngFor="let idioma of ticketService.ticketInformation.data.allDataRest">
 
       <div *ngFor="let area of idioma.areas">
