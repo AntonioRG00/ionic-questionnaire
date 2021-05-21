@@ -17,6 +17,7 @@ import { RecomendacionComponent } from './recomendacion/recomendacion.component'
 
 import { StepsModule } from 'primeng/steps';
 import { CheckboxModule } from 'primeng/checkbox';
+import { SplashComponent } from '../components/splash/splash.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     ExplicacionComponent,
     RecoleccionDatosComponent,
     CuestionarioComponent,
-    RecomendacionComponent
+    RecomendacionComponent,
+    SplashComponent
   ],
   exports: [
     RouterModule

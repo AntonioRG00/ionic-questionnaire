@@ -31,6 +31,18 @@ export class TicketService {
     restService.getAllData().subscribe((data) =>{
       if(data){
         this.ticketInformation.data.allDataRest = data;
+
+        // If splash exists
+        const splash = document.getElementById('splashscreen');
+        if(splash){
+          setTimeout(() => {
+            //console.log('Splash existe');
+            splash.remove();
+          }, 5000);
+
+        } else {
+          console.log('Splash no existe');
+        }
       }
     })
   }
@@ -38,7 +50,7 @@ export class TicketService {
   /** Filtro para los datos 'explicacion' del ticket (True si pasa el filtrado) */
   public checkTicketExplicacion(): boolean{
     let explicacion = this.ticketInformation.explicacion;
-    
+
     if(!explicacion.idioma) return false;
 
     return true;
@@ -47,11 +59,11 @@ export class TicketService {
   /** Filtro para los datos 'RecoleccionDatos' del ticket (True si pasa el filtrado) */
   public checkTicketRecoleccionDatos(): boolean{
     let recoleccionDatos = this.ticketInformation.recoleccionDatos;
-    
+
     if(!recoleccionDatos.perfilUsuario.length) return false;
 
     let algunaCategoriaSeleccionada = false;
-    this.ticketInformation.data.allDataRest.forEach(x => x.areas.forEach(y => 
+    this.ticketInformation.data.allDataRest.forEach(x => x.areas.forEach(y =>
       y.categorias.forEach(z => z.isChecked ? algunaCategoriaSeleccionada=true:"")))
     if(!algunaCategoriaSeleccionada) return false;
 
@@ -61,7 +73,7 @@ export class TicketService {
   /** Filtro para los datos 'Cuestionario' del ticket (True si pasa el filtrado) */
   public checkTicketCuestionario(): boolean{
     let explicacion = this.ticketInformation.explicacion;
-    
+
      //TODO IMPLEMENTAR
 
     return;
@@ -70,7 +82,7 @@ export class TicketService {
   /** Filtro para los datos 'Recomendacion' del ticket (True si pasa el filtrado) */
   public checkTicketRecomendacion(): boolean{
     let explicacion = this.ticketInformation.explicacion;
-    
+
     //TODO IMPLEMENTAR
 
     return;

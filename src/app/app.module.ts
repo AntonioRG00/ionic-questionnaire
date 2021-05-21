@@ -16,7 +16,7 @@ import { SplashComponent } from './components/splash/splash.component';
 
 @NgModule({
   declarations: [AppComponent,
-  SplashComponent],
+  ],
   entryComponents: [],
   imports: [HttpClientModule, HttpClientInMemoryWebApiModule, BrowserModule,
     IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, ChartModule],
