@@ -11,7 +11,8 @@ export class TicketService {
   /** Ticket con la información del proceso del usuario */
   ticketInformation = {
     data: {
-      allDataRest: [] = new Array<Idioma>()
+      allDataRest: [] = new Array<Idioma>(),
+      idiomasExistentes: [] = new Array<String>()
     },
     explicacion: {
       idiomaSeleccionado: new Object as Idioma
@@ -31,6 +32,10 @@ export class TicketService {
     restService.getAllData().subscribe((data) =>{
       if(data){
         this.ticketInformation.data.allDataRest = data;
+
+        this.ticketInformation.data.idiomasExistentes = this.ticketInformation.data.allDataRest.map((idioma) => idioma['nombre'])
+
+        console.log("Idiomas cargados: " + this.ticketInformation.data.idiomasExistentes)
 
         // If splash exists
         const splash = document.getElementById('splashscreen');

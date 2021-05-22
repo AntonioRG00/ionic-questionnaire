@@ -16,10 +16,7 @@
       <ion-item>
         <ion-label>Selecciona un idioma</ion-label>
         <ion-select [value]="ticketService.ticketInformation.explicacion.idiomaSeleccionado.nombre" (ionChange)="onIdiomaSelectChange($event.target.value)">
-          <ion-select-option value="Español">Español</ion-select-option>
-          <ion-select-option value="ingles">Inglés</ion-select-option>
-          <ion-select-option value="aleman">Alemán</ion-select-option>
-          <ion-select-option value="Italiano">Italiano</ion-select-option>
+          <ion-select-option *ngFor="let idioma of ticketService.ticketInformation.data.idiomasExistentes" [value]="idioma">{{idioma}}</ion-select-option>
         </ion-select>
       </ion-item>
     </div>
