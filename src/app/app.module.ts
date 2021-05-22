@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -18,7 +19,7 @@ import { SplashComponent } from './components/splash/splash.component';
   declarations: [AppComponent,
   ],
   entryComponents: [],
-  imports: [HttpClientModule, HttpClientInMemoryWebApiModule, BrowserModule,
+  imports: [HttpClientModule, HttpClientInMemoryWebApiModule, BrowserModule, BrowserAnimationsModule,
     IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, ChartModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

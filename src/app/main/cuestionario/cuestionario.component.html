@@ -3,9 +3,11 @@
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col size="12" size-md="8">
-          <p>Centrado</p>
-
-
+          <p-accordion [multiple]="true">
+            <p-accordionTab expandIcon="pi pi-fw pi-chevron-right" header="Header 1"> Content 1 </p-accordionTab>
+            <p-accordionTab header="Header 2"> Content 2 </p-accordionTab>
+            <p-accordionTab header="Header 3"> Content 3 </p-accordionTab>
+          </p-accordion>
         </ion-col>
       </ion-row>
     </ion-grid>

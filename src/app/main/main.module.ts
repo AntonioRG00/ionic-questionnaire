@@ -18,6 +18,7 @@ import { RecomendacionComponent } from './recomendacion/recomendacion.component'
 import { StepsModule } from 'primeng/steps';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SplashComponent } from '../components/splash/splash.component';
+import {AccordionModule} from 'primeng/accordion';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SplashComponent } from '../components/splash/splash.component';
     IonicModule,
     StepsModule,
     CheckboxModule,
-    MainPageRoutingModule
+    MainPageRoutingModule,
+    AccordionModule
   ],
   declarations: [
     MainPage,
