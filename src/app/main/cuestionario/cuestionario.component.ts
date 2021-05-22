@@ -15,7 +15,7 @@ export class CuestionarioComponent implements OnInit {
 
       // Volver de proceso ya que no ha pasado el filtro
       if(!ticketService.checkTicketRecoleccionDatos()){
-         //this.router.navigate(['recoleccionDatos'])
+         this.router.navigate(['recoleccionDatos'])
       }
     }
 
