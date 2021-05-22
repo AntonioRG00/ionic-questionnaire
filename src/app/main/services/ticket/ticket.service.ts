@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Idioma, Area, Categoria } from '../interfaces/cuestionario';
+import { Idioma, Area, Categoria, Perfil } from '../interfaces/cuestionario';
 import { RestService } from '../apirest/rest.service'
 
 @Injectable({
@@ -11,7 +11,9 @@ export class TicketService {
   /** Ticket con la información del proceso del usuario */
   ticketInformation = {
     data: {
-      allDataRest: [] = new Array<Idioma>()
+      allDataRest: [] = new Array<Idioma>(),
+      idiomasDisponibles: [] = new Array<String>(),
+      perfilesDisponibles: [] = new Array<Perfil>()
     },
     explicacion: {
       idiomaSeleccionado: new Object as Idioma
@@ -32,17 +34,28 @@ export class TicketService {
       if(data){
         this.ticketInformation.data.allDataRest = data;
 
-        // If splash exists
-        const splash = document.getElementById('splashscreen');
-        if(splash){
-          setTimeout(() => {
-            //console.log('Splash existe');
-            splash.remove();
-          }, 5000);
+        // Sacamos los idiomas disponibles
+        this.ticketInformation.data.idiomasDisponibles = this.ticketInformation.data.allDataRest.map((idioma) => idioma['nombre'])
+        console.log("Idiomas cargados: " + this.ticketInformation.data.idiomasDisponibles)
 
-        }
+        // Sacamos los perfiles disponibles
+        restService.getAllPerfiles().subscribe((perfiles) =>{
+          if(perfiles) {
+            this.ticketInformation.data.perfilesDisponibles = perfiles
+            this.splashScreen();
+          }
+        })
       }
     })
+  }
+  
+  public splashScreen(){    
+    const splash = document.getElementById('splashscreen');
+    if(splash){
+      setTimeout(() => {
+        splash.remove();
+      }, 5000);
+    }
   }
 
   /** Filtro para los datos 'explicacion' del ticket (True si pasa el filtrado) */
