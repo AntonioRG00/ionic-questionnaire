@@ -1,46 +1,51 @@
-<ion-list>
-  <h1 class="encabezado centrado">Seleccionar áreas de interés</h1>
-
-  <!--<div class="centrado" id="loading"><br><ion-spinner name="lines"></ion-spinner><br></div>-->
-  <div *ngFor="let area of ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
-    <ion-list-header>
-      <h2>{{area.nombre}}</h2>
-    </ion-list-header>
+<ion-app>
+  <ion-content>
     <ion-list>
-      <ion-item *ngFor="let cat of area.categorias">
-        <ion-label>{{cat.nombre}} | {{cat.descripcion}}</ion-label>
-        <ion-checkbox [checked]="cat.isChecked" [(ngModel)]="cat.isChecked"></ion-checkbox>
+      <h1 class="encabezado centrado">Seleccionar áreas de interés</h1>
+
+      <!--<div class="centrado" id="loading"><br><ion-spinner name="lines"></ion-spinner><br></div>-->
+      <div *ngFor="let area of ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
+        <ion-list-header>
+          <h2>{{area.nombre}}</h2>
+        </ion-list-header>
+        <ion-list>
+          <ion-item *ngFor="let cat of area.categorias">
+            <ion-label>{{cat.nombre}} | {{cat.descripcion}}</ion-label>
+            <ion-checkbox [checked]="cat.isChecked" [(ngModel)]="cat.isChecked"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </div>
+      <h1 class="encabezado centrado">Otros datos de interés</h1>
+      <ion-item>
+        <ion-label>Selecciona un perfil</ion-label>
+        <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario"
+          (ionChange)="ticketService.ticketInformation.recoleccionDatos.perfilUsuario = $event.target.value">
+          <ion-select-option value="centro">Centro educativo</ion-select-option>
+          <ion-select-option value="empresa">Empresa</ion-select-option>
+          <ion-select-option value="alumno">Alumno</ion-select-option>
+        </ion-select>
       </ion-item>
     </ion-list>
-  </div>
-  <h1 class="encabezado centrado">Otros datos de interés</h1>
-  <ion-item>
-    <ion-label>Selecciona un perfil</ion-label>
-    <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario"
-      (ionChange)="ticketService.ticketInformation.recoleccionDatos.perfilUsuario = $event.target.value">
-      <ion-select-option value="centro">Centro educativo</ion-select-option>
-      <ion-select-option value="empresa">Empresa</ion-select-option>
-      <ion-select-option value="alumno">Alumno</ion-select-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
+  </ion-content>
 
-<ion-footer class="ion-no-border">
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6>
-          <ion-button expand="block" color="dark" (click)="onBackPage()">
-            <ion-icon name="arrow-back-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col col-6>
-          <ion-button expand="block" color="primary" (click)="onNextPage()">
-            <ion-icon name="arrow-forward-outline"></ion-icon>
-          </ion-button>
 
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>
+  <ion-footer class="ion-no-border">
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-button expand="block" color="dark" (click)="onBackPage()">
+              <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col col-6>
+            <ion-button expand="block" color="primary" (click)="onNextPage()">
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </ion-button>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-footer>
+</ion-app>

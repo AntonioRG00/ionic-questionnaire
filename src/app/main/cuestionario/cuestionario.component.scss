@@ -1,0 +1,64 @@
+label p{
+  margin: 0;
+}
+
+label p:before{
+  content: '';
+}
+
+.tab-group{
+  margin: 3em auto;
+  max-width: 503mm;
+  width: 100%;
+}
+
+.tab{
+  position: relative;
+  width: 100%;
+}
+
+.tab label{
+  background: #ffffff;
+  color: #000000;
+  display: block;
+  line-height: 3;
+  padding-left: .5em;
+  margin-bottom: .5em;
+  border: 2px groove #eeeeee;
+}
+
+.tab label:hover{
+  background: #3880ff;
+  color: #ffffff;
+  transition: .3s;
+}
+
+.tab-content{
+  overflow: hidden;
+  transition: all .5s;
+  //max-height: 0;
+}
+
+.tab-content p{
+  margin: 1em 0;
+  margin-left: 2em;
+  font-size: 15px;
+  font-style: normal;
+  color: black;
+}
+
+ion-item ion-label{
+  margin: 1em 0;
+  margin-left: 2em;
+}
+
+.centered{
+  width: 1%;
+  margin: auto;
+}
+
+.col{
+  //border-style: solid;
+  text-align: center;
+  padding: 10px;
+}
