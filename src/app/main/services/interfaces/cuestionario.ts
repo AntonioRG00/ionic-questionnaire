@@ -1,5 +1,3 @@
-import { NumberSymbol } from "@angular/common";
-
 export interface Respuesta {
   id: number;
   respuesta: string;
@@ -15,7 +13,13 @@ export interface Pregunta {
   pregunta: string;
   recomendacion: string;
   puntuacionRecomendacion: number;
+  perfil: Perfil;
   respuestas: PreguntaRespuesta[];
+}
+
+export interface Perfil{
+  id: number;
+  perfil: string;
 }
 
 export interface Categoria {

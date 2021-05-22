@@ -18,16 +18,12 @@
       <h1 class="encabezado centrado">Otros datos de interés</h1>
       <ion-item>
         <ion-label>Selecciona un perfil</ion-label>
-        <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario"
-          (ionChange)="ticketService.ticketInformation.recoleccionDatos.perfilUsuario = $event.target.value">
-          <ion-select-option value="centro">Centro educativo</ion-select-option>
-          <ion-select-option value="empresa">Empresa</ion-select-option>
-          <ion-select-option value="alumno">Alumno</ion-select-option>
+        <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="ticketService.ticketInformation.recoleccionDatos.perfilUsuario = $event.target.value">
+          <ion-select-option *ngFor="let perfil of ticketService.ticketInformation.data.perfilesDisponibles" [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
   </ion-content>
-
 
   <ion-footer class="ion-no-border">
     <ion-toolbar>
@@ -42,7 +38,6 @@
             <ion-button expand="block" color="primary" (click)="onNextPage()">
               <ion-icon name="arrow-forward-outline"></ion-icon>
             </ion-button>
-
           </ion-col>
         </ion-row>
       </ion-grid>
