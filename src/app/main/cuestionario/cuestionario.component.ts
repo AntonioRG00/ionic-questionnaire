@@ -12,7 +12,6 @@ export class CuestionarioComponent implements OnInit {
 
   constructor(public ticketService: TicketService, private router: Router,
     public alertController: AlertController) {
-
       // Volver de proceso ya que no ha pasado el filtro
       if(!ticketService.checkTicketRecoleccionDatos()){
          this.router.navigate(['recoleccionDatos'])

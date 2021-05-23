@@ -3,9 +3,7 @@
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col size="12" size-md="10">
-          <div *ngFor="
-              let idioma of ticketService.ticketInformation.data.allDataRest
-            ">
+          <div *ngFor="let idioma of ticketService.ticketInformation.data.allDataRest">
             <div *ngFor="let area of idioma.areas">
               <div *ngFor="let cat of area.categorias">
                 <ng-container *ngIf="cat.isChecked">
@@ -15,29 +13,33 @@
                       <!-- Questions -->
                       <ng-template pTemplate="content">
                         <div *ngFor="let pregunta of cat.preguntas">
-                          <ion-list>
-                            <ion-radio-group allow-empty-selection="false" (ionChange)="respuestaGroupChange($event.detail.value,pregunta)">
-                              <ion-list-header>
-                                <ion-label>
-                                  <p class="question">
-                                    {{ pregunta.pregunta }}
-                                  </p>
-                                </ion-label>
-                              </ion-list-header>
-                              <!-- Answers down below -->
-                              <div *ngFor="let respuesta of pregunta.respuestas">
-                                <ion-item (click)="showRec(pregunta.recomendacion)">
+                          <ng-container *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario == pregunta.perfil.perfil">
+                            <ion-list>
+                              <ion-radio-group allow-empty-selection="false" (ionChange)="respuestaGroupChange($event.detail.value,pregunta)">
+                                <ion-list-header>
                                   <ion-label>
-                                    <p class="answer">
-                                      {{ respuesta.respuesta.respuesta }}
+                                    <p class="question">
+                                      {{ pregunta.pregunta }}
                                     </p>
                                   </ion-label>
-                                  <ion-radio [value]="respuesta"></ion-radio>
-                                </ion-item>
-                              </div>
-                            </ion-radio-group>
-                          </ion-list>
+                                </ion-list-header>
+                                <!-- Answers down below -->
+                                <div *ngFor="let respuesta of pregunta.respuestas">
+                                  <ion-item (click)="showRec(pregunta.recomendacion)">
+                                    <ion-label>
+                                      <p class="answer">
+                                        {{ respuesta.respuesta.respuesta }}
+                                      </p>
+                                    </ion-label>
+                                    <ion-radio [value]="respuesta"></ion-radio>
+                                  </ion-item>
+                                </div>
+                              </ion-radio-group>
+                            </ion-list>
+
+                          </ng-container>
                         </div>
+
                       </ng-template>
                     </p-accordionTab>
                   </p-accordion>
