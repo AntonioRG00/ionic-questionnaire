@@ -48,13 +48,13 @@ export class TicketService {
       }
     })
   }
-  
-  public splashScreen(){    
+
+  public splashScreen(){
     const splash = document.getElementById('splashscreen');
     if(splash){
       setTimeout(() => {
         splash.remove();
-      }, 5000);
+      }, 4000);
     }
   }
 
@@ -62,9 +62,10 @@ export class TicketService {
   public checkTicketExplicacion(): boolean{
     let explicacion = this.ticketInformation.explicacion;
 
-    if(explicacion.idiomaSeleccionado.id == null) return false;
+    /*if(explicacion.idiomaSeleccionado.id == null) return false;
 
-    return true;
+    return true;*/
+    return explicacion.idiomaSeleccionado.id != null;
   }
 
   /** Filtro para los datos 'RecoleccionDatos' del ticket (True si pasa el filtrado) */
