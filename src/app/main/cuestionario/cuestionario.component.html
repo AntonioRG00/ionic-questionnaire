@@ -3,8 +3,8 @@
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col size="12" size-md="10">
-          <div *ngFor="let idioma of ticketService.ticketInformation.data.allDataRest">
-            <div *ngFor="let area of idioma.areas">
+
+            <div *ngFor="let area of ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
               <div *ngFor="let cat of area.categorias">
                 <ng-container *ngIf="cat.isChecked">
                   <p-accordion [multiple]="true">
@@ -15,7 +15,7 @@
                         <div *ngFor="let pregunta of cat.preguntas">
                           <ng-container *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario == pregunta.perfil.perfil">
                             <ion-list>
-                              <ion-radio-group allow-empty-selection="false" (ionChange)="respuestaGroupChange($event.detail.value,pregunta)">
+                              <ion-radio-group allow-empty-selection="false" (ionChange)="respuestaGroupChange($event.detail.value,pregunta.recomendacion)">
                                 <ion-list-header>
                                   <ion-label>
                                     <p class="question">
@@ -31,7 +31,7 @@
                                         {{ respuesta.respuesta.respuesta }}
                                       </p>
                                     </ion-label>
-                                    <ion-radio [value]="respuesta.puntuacion" (click)="showRec(respuesta.puntuacion, pregunta.recomendacion)"></ion-radio>
+                                    <ion-radio [value]="respuesta.puntuacion"></ion-radio>
                                   </ion-item>
                                 </div>
                               </ion-radio-group>
@@ -46,7 +46,6 @@
                 </ng-container>
               </div>
             </div>
-          </div>
         </ion-col>
       </ion-row>
     </ion-grid>

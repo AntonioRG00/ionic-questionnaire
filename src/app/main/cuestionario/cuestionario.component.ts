@@ -39,4 +39,10 @@ export class CuestionarioComponent implements OnInit {
       //alert(recomendacion);
     }
   }
+
+  respuestaGroupChange(valorRespuesta, recomendacion){
+    if(valorRespuesta < 4){
+      alert(recomendacion);
+    }
+  }
 }
