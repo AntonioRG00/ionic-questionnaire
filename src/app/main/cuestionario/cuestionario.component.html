@@ -25,13 +25,13 @@
                                 </ion-list-header>
                                 <!-- Answers down below -->
                                 <div *ngFor="let respuesta of pregunta.respuestas">
-                                  <ion-item (click)="showRec(pregunta.recomendacion)">
-                                    <ion-label>
+                                  <ion-item>
+                                    <ion-label >
                                       <p class="answer">
                                         {{ respuesta.respuesta.respuesta }}
                                       </p>
                                     </ion-label>
-                                    <ion-radio [value]="respuesta"></ion-radio>
+                                    <ion-radio [value]="respuesta.puntuacion" (click)="showRec(respuesta.puntuacion, pregunta.recomendacion)"></ion-radio>
                                   </ion-item>
                                 </div>
                               </ion-radio-group>

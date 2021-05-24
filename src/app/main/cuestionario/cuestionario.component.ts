@@ -33,4 +33,10 @@ export class CuestionarioComponent implements OnInit {
     console.log("Redirect to: recoleccionDatos")
     this.router.navigate(['recoleccionDatos'])
   }
+
+  showRec(valorRespuesta, recomendacion){
+    if(valorRespuesta<4){
+      //alert(recomendacion);
+    }
+  }
 }
