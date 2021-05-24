@@ -15,7 +15,7 @@
                         <div *ngFor="let pregunta of cat.preguntas">
                           <ng-container *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario == pregunta.perfil.perfil">
                             <ion-list>
-                              <ion-radio-group allow-empty-selection="false" (ionChange)="respuestaGroupChange($event.detail.value, pregunta.recomendacion)">
+                              <ion-radio-group [value]="pregunta.respuestaSeleccionada" allow-empty-selection="false" (ionChange)="pregunta.respuestaSeleccionada = $event.detail.value">
                                 <ion-list-header>
                                   <ion-label>
                                     <p class="question">
@@ -31,7 +31,7 @@
                                         {{ respuesta.respuesta.respuesta }}
                                       </p>
                                     </ion-label>
-                                    <ion-radio [value]="respuesta.puntuacion"></ion-radio>
+                                    <ion-radio [value]="respuesta"></ion-radio>
                                   </ion-item>
                                 </div>
                               </ion-radio-group>

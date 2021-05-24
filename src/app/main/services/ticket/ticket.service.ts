@@ -84,11 +84,20 @@ export class TicketService {
 
   /** Filtro para los datos 'Cuestionario' del ticket (True si pasa el filtrado) */
   public checkTicketCuestionario(): boolean{
-    let explicacion = this.ticketInformation.explicacion;
 
-     //TODO IMPLEMENTAR
-
-    return;
+    let noHayDatosNulos = true;
+    this.ticketInformation.explicacion.idiomaSeleccionado.areas
+      .forEach(area => area.categorias.forEach(categoria => categoria.preguntas.forEach(pregunta => {
+          if(categoria.isChecked){
+            if(pregunta.perfil.perfil === this.ticketInformation.recoleccionDatos.perfilUsuario){
+              if(pregunta.respuestaSeleccionada == null){
+                noHayDatosNulos = false;
+              }
+            }
+          }
+        })))
+        
+    return noHayDatosNulos;
   }
 
   /** Filtro para los datos 'Recomendacion' del ticket (True si pasa el filtrado) */
