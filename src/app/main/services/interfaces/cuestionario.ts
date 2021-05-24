@@ -14,6 +14,7 @@ export interface Pregunta {
   recomendacion: string;
   puntuacionRecomendacion: number;
   perfil: Perfil;
+  respuestaSeleccionada: PreguntaRespuesta;
   respuestas: PreguntaRespuesta[];
 }
 

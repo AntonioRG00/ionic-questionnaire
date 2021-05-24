@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
+import { Pregunta, PreguntaRespuesta } from 'ionic-questionnaire/src/app/main/services/interfaces/cuestionario';
 
 @Component({
   selector: 'app-cuestionario',
@@ -12,6 +13,7 @@ export class CuestionarioComponent implements OnInit {
 
   constructor(public ticketService: TicketService, private router: Router,
     public alertController: AlertController) {
+
       // Volver de proceso ya que no ha pasado el filtro
       if(!ticketService.checkTicketRecoleccionDatos()){
          this.router.navigate(['recoleccionDatos'])
@@ -32,17 +34,5 @@ export class CuestionarioComponent implements OnInit {
   public onBackPage(){
     console.log("Redirect to: recoleccionDatos")
     this.router.navigate(['recoleccionDatos'])
-  }
-
-  showRec(valorRespuesta, recomendacion){
-    if(valorRespuesta<4){
-      //alert(recomendacion);
-    }
-  }
-
-  respuestaGroupChange(valorRespuesta, recomendacion){
-    if(valorRespuesta < 4){
-      alert(recomendacion);
-    }
   }
 }
