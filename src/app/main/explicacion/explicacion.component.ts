@@ -37,9 +37,12 @@ export class ExplicacionComponent implements OnInit {
   public onIdiomaSelectChange(languaje: string){
     console.log("Languaje selected: " + languaje)
 
+    // Guardamos el idioma seleccionado en el ticket
     this.ticketService.ticketInformation.explicacion.idiomaSeleccionado = 
-      this.ticketService.ticketInformation.data.allDataRest.find(x => x.nombre.toLowerCase() == languaje.toLowerCase())  
+      this.ticketService.ticketInformation.data.allDataRest.find(x => x.nombre.toLowerCase() == languaje.toLowerCase())
 
-    console.log("Idioma seleccionado: " + this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.nombre)
+    // Ponemos todas las categorías de los demás idiomas deseleccionadas
+    this.ticketService.ticketInformation.data.allDataRest.filter(x => x.nombre !== languaje)
+      .forEach(idioma => idioma.areas.forEach(area => area.categorias.forEach(categoria => categoria.isChecked = false)))
   }
 }
