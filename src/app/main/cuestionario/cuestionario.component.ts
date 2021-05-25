@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
-import { Pregunta, PreguntaRespuesta } from 'ionic-questionnaire/src/app/main/services/interfaces/cuestionario';
 
 @Component({
   selector: 'app-cuestionario',
