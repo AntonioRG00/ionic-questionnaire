@@ -18,7 +18,7 @@ export class MainPage implements OnInit {
       {label: 'Explicación', routerLink: '/explicacion'},
       {label: 'Recolección de datos', routerLink: '/recoleccionDatos'},
       {label: 'Cuestionario', routerLink: '/cuestionario'},
-      {label: 'Recomendación', routerLink: '/recomendacion'}
+      {label: 'Resultados', routerLink: '/recomendacion'}
     ];
     
     this.menuPorPasosMovil = [

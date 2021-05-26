@@ -1,17 +1,43 @@
 <ion-app>
-  <div *ngFor="let area of this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
-    <div *ngFor="let cat of area.categorias">
-      <ng-container *ngIf="cat.isChecked">
-        <div *ngFor="let pregunta of cat.preguntas">
-          <ng-container *ngIf="pregunta.puntuacionRecomendacion > pregunta.respuestaSeleccionada.puntuacion">
-            <div [innerHTML]="pregunta.recomendacion"></div>
-          </ng-container>
+  <h1 class="encabezado centrado">Resultados</h1>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <p>En base a sus respuestas debe considerar las siguientes recomendaciones:</p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="10">
+        <div *ngFor="let area of this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
+          <div *ngFor="let cat of area.categorias">
+            <ng-container *ngIf="cat.isChecked">
+             
+              <ul>
+                <li class="nested-list"> <b>{{cat.nombre}}</b>| {{cat.descripcion}}
+                  <ol>
+
+                  
+              <div *ngFor="let pregunta of cat.preguntas">
+                <ng-container *ngIf="pregunta.puntuacionRecomendacion >= pregunta.respuestaSeleccionada.puntuacion">
+                  
+                    <li [innerHTML]="pregunta.recomendacion"></li>
+                  
+                  
+                </ng-container>
+              </div>
+            </ol>
+          </li>
+            </ul>
+            </ng-container>
+      
+          </div>
         </div>
+      </ion-col>
 
-      </ng-container>
-
-    </div>
-  </div>
+    </ion-row>
+  </ion-grid>
+  
+  
   <ion-footer>
   <ion-toolbar>
     <ion-grid>
