@@ -8,23 +8,24 @@ import { MenuItem } from 'primeng/api';
 })
 export class MainPage implements OnInit {
 
-  menuPorPasos: MenuItem[];
-  menuPorPasosMovil: MenuItem[];
+  public menuPorPasos: MenuItem[];
+  public menuPorPasosMovil: MenuItem[];
 
   constructor() { }
 
   ngOnInit() {
     this.menuPorPasos = [
-      {label: 'Explicación', routerLink: 'explicacion'},
-      {label: 'Recolección de datos', routerLink: 'recoleccionDatos'},
-      {label: 'Cuestionario', routerLink: 'cuestionario'},
-      {label: 'Recomendación', routerLink: 'recomendacion'}
+      {label: 'Explicación', routerLink: '/explicacion'},
+      {label: 'Recolección de datos', routerLink: '/recoleccionDatos'},
+      {label: 'Cuestionario', routerLink: '/cuestionario'},
+      {label: 'Recomendación', routerLink: '/recomendacion'}
     ];
+    
     this.menuPorPasosMovil = [
-      {label: '', routerLink: 'explicacion'},
-      {label: '', routerLink: 'recoleccionDatos'},
-      {label: '', routerLink: 'cuestionario'},
-      {label: '', routerLink: 'recomendacion'}
+      {label: '', routerLink: '/explicacion'},
+      {label: '', routerLink: '/recoleccionDatos'},
+      {label: '', routerLink: '/cuestionario'},
+      {label: '', routerLink: '/recomendacion'}
     ];
   }
 
