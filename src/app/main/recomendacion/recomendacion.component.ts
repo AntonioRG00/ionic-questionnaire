@@ -11,7 +11,7 @@ import { AlertController } from '@ionic/angular';
 export class RecomendacionComponent implements OnInit {
 
   constructor(public ticketService: TicketService, private router: Router,
-    public alertController: AlertController) { 
+    public alertController: AlertController) {
 
       // Volver de proceso ya que no ha pasado el filtro
       if(!ticketService.checkTicketCuestionario()){
