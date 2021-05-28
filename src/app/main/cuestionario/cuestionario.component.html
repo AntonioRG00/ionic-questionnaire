@@ -3,10 +3,9 @@
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col size="12" size-md="10">
-
             <div *ngFor="let area of ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
               <div *ngFor="let cat of area.categorias">
-                <ng-container *ngIf="cat.isChecked">
+                <ng-container *ngIf="comprobarCategoria(cat)">
                   <p-accordion [multiple]="true">
                     <p-accordionTab>
                       <ng-template pTemplate="header"><b>{{ cat.nombre }}</b>| {{ cat.descripcion }}</ng-template>
@@ -36,10 +35,8 @@
                                 </div>
                               </ion-radio-group>
                             </ion-list>
-
                           </ng-container>
                         </div>
-
                       </ng-template>
                     </p-accordionTab>
                   </p-accordion>

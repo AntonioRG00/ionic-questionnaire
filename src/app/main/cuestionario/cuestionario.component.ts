@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
+import { Categoria } from '../services/interfaces/cuestionario';
 
 @Component({
   selector: 'app-cuestionario',
@@ -33,5 +34,10 @@ export class CuestionarioComponent implements OnInit {
   public onBackPage(){
     console.log("Redirect to: recoleccionDatos")
     this.router.navigate(['recoleccionDatos'])
+  }
+
+  /** Comprueba que la categoría este seleccionada y tenga preguntas del perfil seleccionado */
+  public comprobarCategoria(categoria: Categoria): boolean {
+    return categoria.preguntas.some(x => x.perfil.perfil == this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario) && categoria.isChecked;
   }
 }
