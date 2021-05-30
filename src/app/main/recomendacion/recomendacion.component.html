@@ -11,45 +11,49 @@
         <div *ngFor="let area of this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
           <div *ngFor="let cat of area.categorias">
             <ng-container *ngIf="cat.isChecked">
-             
               <ul>
                 <li class="nested-list"> <b>{{cat.nombre}}</b>| {{cat.descripcion}}
                   <ol>
-
-                  
-              <div *ngFor="let pregunta of cat.preguntas">
-                <ng-container *ngIf="pregunta.puntuacionRecomendacion >= pregunta.respuestaSeleccionada.puntuacion">
-                  
-                    <li [innerHTML]="pregunta.recomendacion"></li>
-                  
-                  
-                </ng-container>
-              </div>
-            </ol>
-          </li>
-            </ul>
+                    <div *ngFor="let pregunta of cat.preguntas">
+                      <ng-container
+                        *ngIf="pregunta.puntuacionRecomendacion >= pregunta.respuestaSeleccionada.puntuacion">
+                        <li [innerHTML]="pregunta.recomendacion"></li>
+                      </ng-container>
+                    </div>
+                  </ol>
+                </li>
+              </ul>
             </ng-container>
-      
           </div>
         </div>
       </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col size="12">
+        <!-- <p-chart type="line" [data]="data"></p-chart> -->
+        <div class="card">
+          <h5>Horizontal</h5>
+          <p-chart type="horizontalBar" [data]="basicData" [options]="basicOptions"></p-chart>
+      </div>
+      </ion-col>
     </ion-row>
   </ion-grid>
-  
-  
-  <ion-footer>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-12>
-          <div class="centrado">
-            <ion-button color="primary"><ion-icon name="download-outline"></ion-icon> Descargar resultados</ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>
-</ion-app>
 
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <div class="centrado">
+              <ion-button color="primary">
+                <ion-icon name="download-outline"></ion-icon> Descargar resultados
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-footer>
+</ion-app>

@@ -19,6 +19,7 @@ import { StepsModule } from 'primeng/steps';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SplashComponent } from '../components/splash/splash.component';
 import {AccordionModule} from 'primeng/accordion';
+import {ChartModule} from 'primeng/chart';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {AccordionModule} from 'primeng/accordion';
     StepsModule,
     CheckboxModule,
     MainPageRoutingModule,
-    AccordionModule
+    AccordionModule,
+    ChartModule
   ],
   declarations: [
     MainPage,
