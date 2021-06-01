@@ -10,6 +10,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class RecomendacionComponent implements OnInit {
 
+  areasConRecomendacion: any;
   basicData: any;
   basicOptions: any;
 
@@ -21,18 +22,13 @@ export class RecomendacionComponent implements OnInit {
         this.router.navigate(['cuestionario'])
       }
       this.basicData = {
+        
         // Los labels no esta terminado
         labels: ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas,
         datasets: [
             {
-                label: 'My First dataset',
                 backgroundColor: '#42A5F5',
                 data: [65, 59, 80, 81, 56, 55, 40]
-            },
-            {
-                label: 'My Second dataset',
-                backgroundColor: '#FFA726',
-                data: [28, 48, 40, 19, 86, 27, 90]
             }
         ]
     };

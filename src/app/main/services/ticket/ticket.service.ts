@@ -25,7 +25,6 @@ export class TicketService {
 
     },
     recomendacion: {
-
     }
   };
 
