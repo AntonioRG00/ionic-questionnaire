@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+
+
 
 @Component({
   selector: 'app-recomendacion',
@@ -9,6 +15,8 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./recomendacion.component.scss'],
 })
 export class RecomendacionComponent implements OnInit {
+
+  pdfObject = null;
 
   areasConRecomendacion: any;
   basicData: any;
@@ -24,7 +32,7 @@ export class RecomendacionComponent implements OnInit {
       this.basicData = {
         
         // Los labels no esta terminado
-        labels: ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas,
+        labels: ['a', 'b', 'c'],
         datasets: [
             {
                 backgroundColor: '#42A5F5',
@@ -56,5 +64,50 @@ export class RecomendacionComponent implements OnInit {
     }
 
   ngOnInit() {}
+
+  public downloadPDF(){
+    //Download pdf
+    const docDef = {
+      content: [
+        {text: 'Cuestionario', style: 'header'},
+        '',
+        {text: 'Esto sera cada una de las areas selecionadas', style: 'subheader'},
+        '',
+        {text: 'Esto sera cada una de las categorias', style: 'subsubheader'}
+      ],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true,
+          margin: [0, 0, 0, 10]
+        },
+        subheader: {
+          fontSize: 16,
+          bold: true,
+          margin: [0, 10, 0, 5]
+        },
+        subsubheader:{
+          fontSize: 14,
+          bold: true,
+          margin: [0, 10, 0, 5]
+        },
+        tableExample: {
+          margin: [0, 5, 0, 15]
+        },
+        tableHeader: {
+          bold: true,
+          fontSize: 13,
+          color: 'black'
+        }
+      },
+      defaultStyle: {
+        // alignment: 'justify'
+      }
+    }
+
+    this.pdfObject = pdfMake.createPdf(docDef);
+
+    this.pdfObject.download('demo.pdf');
+  }
 
 }
