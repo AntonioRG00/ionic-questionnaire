@@ -29,14 +29,27 @@ export class RecomendacionComponent implements OnInit {
       if(!ticketService.checkTicketCuestionario()){
         this.router.navigate(['cuestionario'])
       }
+
+      // Obtenemos los nombres de las categorías seleccionadas
+      let categoriasChecked = ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas
+        .map(area => area['categorias'].filter(categoria => categoria.isChecked))[0];
+
+      // Obtenemos la puntuación total de cada categoría
+      let puntuacionCategoriasChecked = new Array<number>(categoriasChecked.length);
+      categoriasChecked.forEach((categoria, index) => {
+        puntuacionCategoriasChecked[index]=0;
+        categoria.preguntas.forEach(pregunta => {
+          puntuacionCategoriasChecked[index]+=pregunta.respuestaSeleccionada.puntuacion;
+        })
+      })
+
       this.basicData = {
-        
         // Los labels no esta terminado
-        labels: ['a', 'b', 'c'],
+        labels: categoriasChecked.map(categoriaChecked => categoriaChecked['nombre']),
         datasets: [
             {
                 backgroundColor: '#42A5F5',
-                data: [65, 59, 80, 81, 56, 55, 40]
+                data: puntuacionCategoriasChecked
             }
         ]
     };
@@ -55,7 +68,8 @@ export class RecomendacionComponent implements OnInit {
           }],
           yAxes: [{
               ticks: {
-                  fontColor: '#495057'
+                  fontColor: '#495057',
+                  min: 0
               }
           }]
       }
