@@ -43,39 +43,54 @@ export class RecomendacionComponent implements OnInit {
         })
       })
 
+      // Obtenemos la puntuación máxima posible por categorías seleccionadas
+      let puntuacionMaximaPorCategoria = new Array<number>(categoriasChecked.length);
+      categoriasChecked.forEach((categoria, index) => {
+        puntuacionMaximaPorCategoria[index]=0;
+        categoria.preguntas.forEach(pregunta => {
+          puntuacionMaximaPorCategoria[index]+=pregunta.respuestas[pregunta.respuestas.length-1].puntuacion;
+        })
+      })
+      let puntuacionMaxima = Math.max.apply(null, puntuacionMaximaPorCategoria);
+
+      // Recalculamos las demás puntuaciones en base a la más alta
+      for(let i=0 ; i<puntuacionCategoriasChecked.length ; i++){
+        let proporcion = puntuacionMaximaPorCategoria[i] / puntuacionCategoriasChecked[i];
+        let puntuacionFinal = puntuacionMaxima / proporcion;
+        puntuacionCategoriasChecked[i] = puntuacionFinal;
+      }
+
       this.basicData = {
         // Los labels no esta terminado
         labels: categoriasChecked.map(categoriaChecked => categoriaChecked['nombre']),
         datasets: [
             {
-                backgroundColor: '#42A5F5',
-                data: puntuacionCategoriasChecked
+              backgroundColor: '#42A5F5',
+              data: puntuacionCategoriasChecked
             }
         ]
     };
 
     this.basicOptions = {
       legend: {
-          labels: {
-              fontColor: '#495057'
-          }
+        display: false
       },
       scales: {
-          xAxes: [{
-              ticks: {
-                  fontColor: '#495057'
-              }
-          }],
-          yAxes: [{
-              ticks: {
-                  fontColor: '#495057',
-                  min: 0
-              }
-          }]
+        xAxes: [{
+            ticks: {
+              fontColor: '#495057'
+            }
+        }],
+        yAxes: [{
+          ticks: {
+            fontColor: '#495057',
+            min: 0,
+            max: puntuacionMaxima
+          }
+        }]
       }
-  };
-
-    }
+    };
+  }
 
   ngOnInit() {}
 
