@@ -4,6 +4,7 @@ import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { Categoria } from '../services/interfaces/cuestionario';
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
@@ -31,8 +32,11 @@ export class RecomendacionComponent implements OnInit {
       }
 
       // Obtenemos los nombres de las categorías seleccionadas
-      let categoriasChecked = ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas
-        .map(area => area['categorias'].filter(categoria => categoria.isChecked))[0];
+      let categoriasChecked = new Array<Categoria>();
+      ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas
+        .forEach(area => area.categorias.filter(categoria => categoria.isChecked)
+        .forEach(categoriaChecked => categoriasChecked.push(categoriaChecked))) 
+      console.log("Categorías checked: " + categoriasChecked);
 
       // Obtenemos la puntuación total de cada categoría
       let puntuacionCategoriasChecked = new Array<number>(categoriasChecked.length);
@@ -42,6 +46,7 @@ export class RecomendacionComponent implements OnInit {
           puntuacionCategoriasChecked[index]+=pregunta.respuestaSeleccionada.puntuacion;
         })
       })
+      console.log("Puntuación total por categoría: " + puntuacionCategoriasChecked)
 
       // Obtenemos la puntuación máxima posible por categorías seleccionadas
       let puntuacionMaximaPorCategoria = new Array<number>(categoriasChecked.length);
@@ -51,7 +56,10 @@ export class RecomendacionComponent implements OnInit {
           puntuacionMaximaPorCategoria[index]+=pregunta.respuestas[pregunta.respuestas.length-1].puntuacion;
         })
       })
+      console.log("Puntuaciones máximas posibles por categoría: " + puntuacionMaximaPorCategoria)
+
       let puntuacionMaxima = Math.max.apply(null, puntuacionMaximaPorCategoria);
+      console.log("Puntuación máxima: " + puntuacionMaxima)
 
       // Recalculamos las demás puntuaciones en base a la más alta
       for(let i=0 ; i<puntuacionCategoriasChecked.length ; i++){
