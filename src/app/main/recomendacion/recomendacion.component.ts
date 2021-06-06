@@ -4,7 +4,7 @@ import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { Categoria } from '../services/interfaces/cuestionario';
+import { Area, Categoria } from '../services/interfaces/cuestionario';
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
@@ -110,7 +110,9 @@ export class RecomendacionComponent implements OnInit {
         '',
         {text: 'Esto sera cada una de las areas selecionadas', style: 'subheader'},
         '',
-        {text: 'Esto sera cada una de las categorias', style: 'subsubheader'}
+        {text: 'Esto sera cada una de las categorias', style: 'subsubheader'},
+        '',
+        {ul: this.generateCategoriasDataPDF()}
       ],
       styles: {
         header: {
@@ -145,6 +147,36 @@ export class RecomendacionComponent implements OnInit {
     this.pdfObject = pdfMake.createPdf(docDef);
 
     this.pdfObject.download('demo.pdf');
+  }
+
+  public getAreasConCategoriasSeleccionadas(): {nombre: string, categorias: Categoria[]}[]{
+
+    let areas = new Array<{nombre: string, categorias: Categoria[]}>();
+
+    this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas
+      .forEach(area => {
+        // Si en el área hay alguna categoría seleccionada la añadimos
+        if(area.categorias.some(categoria => categoria.isChecked)){
+          let length = areas.push({nombre: area.nombre, categorias: []})
+          
+          area.categorias.filter(categoria => categoria.isChecked)
+            .forEach(categoriaSeleccionada => areas[length-1].categorias.push(categoriaSeleccionada))
+        }
+      })
+    return areas;
+  }
+
+  public generateCategoriasDataPDF(): [{text: string, style: string},{type: string, ol: Array<String>, style: string}][] {
+    let datosAreas = new Array<[{text: string, style: string},{type: string, ol: Array<String>, style: string}]>();
+    let areas = this.getAreasConCategoriasSeleccionadas();
+
+    areas.forEach(area => {
+      datosAreas.push([
+        {text: area.nombre, style: 'subheader'},
+        {type: 'lower-alpha',ol: area.categorias.map(categoria => categoria['nombre']),style: 'subsubheader'}
+      ])
+    })
+    return datosAreas
   }
 
 }
