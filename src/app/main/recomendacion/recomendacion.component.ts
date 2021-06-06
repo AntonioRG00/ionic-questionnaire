@@ -42,24 +42,19 @@ export class RecomendacionComponent implements OnInit {
         .forEach(categoriaChecked => categoriasChecked.push(categoriaChecked))) 
       console.log("Categorías checked: " + categoriasChecked);
 
-      // Obtenemos la puntuación total de cada categoría
+      // Obtenemos la puntuación total de cada categoría y la puntuación máxima posible por categorías seleccionadas
       let puntuacionCategoriasChecked = new Array<number>(categoriasChecked.length);
-      categoriasChecked.forEach((categoria, index) => {
-        puntuacionCategoriasChecked[index]=0;
-        categoria.preguntas.forEach(pregunta => {
-          puntuacionCategoriasChecked[index]+=pregunta.respuestaSeleccionada.puntuacion;
-        })
-      })
-      console.log("Puntuación total por categoría: " + puntuacionCategoriasChecked)
-
-      // Obtenemos la puntuación máxima posible por categorías seleccionadas
       let puntuacionMaximaPorCategoria = new Array<number>(categoriasChecked.length);
       categoriasChecked.forEach((categoria, index) => {
+        puntuacionCategoriasChecked[index]=0;
         puntuacionMaximaPorCategoria[index]=0;
-        categoria.preguntas.forEach(pregunta => {
-          puntuacionMaximaPorCategoria[index]+=pregunta.respuestas[pregunta.respuestas.length-1].puntuacion;
-        })
+        categoria.preguntas.filter(pregunta => pregunta.perfil.perfil == ticketService.ticketInformation.recoleccionDatos.perfilUsuario)
+          .forEach(pregunta => {
+            puntuacionCategoriasChecked[index]+=pregunta.respuestaSeleccionada.puntuacion;
+            puntuacionMaximaPorCategoria[index]+=pregunta.respuestas[pregunta.respuestas.length-1].puntuacion;
+          })
       })
+      console.log("Puntuación total por categoría: " + puntuacionCategoriasChecked)
       console.log("Puntuaciones máximas posibles por categoría: " + puntuacionMaximaPorCategoria)
 
       let puntuacionMaxima = Math.max.apply(null, puntuacionMaximaPorCategoria);
