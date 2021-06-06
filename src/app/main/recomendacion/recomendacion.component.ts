@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Area, Categoria } from '../services/interfaces/cuestionario';
+import { attachView } from '@ionic/angular/providers/angular-delegate';
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
@@ -20,8 +21,11 @@ export class RecomendacionComponent implements OnInit {
   pdfObject = null;
 
   areasConRecomendacion: any;
+
+  //Chart
   basicData: any;
   basicOptions: any;
+  image: string;
 
   constructor(public ticketService: TicketService, private router: Router,
     public alertController: AlertController) {
@@ -83,6 +87,14 @@ export class RecomendacionComponent implements OnInit {
       legend: {
         display: false
       },
+      animation:{
+        onComplete: function(){
+          this.image = this.toBase64Image();
+          console.log('image converted to base 64');
+          console.log(this.image.length);
+          console.log(this.image);
+        }
+      },
       scales: {
         xAxes: [{
             ticks: {
@@ -106,47 +118,49 @@ export class RecomendacionComponent implements OnInit {
     //Download pdf
     const docDef = {
       content: [
-        {text: 'Cuestionario', style: 'header'},
-        '',
-        {text: 'Esto sera cada una de las areas selecionadas', style: 'subheader'},
-        '',
-        {text: 'Esto sera cada una de las categorias', style: 'subsubheader'},
-        '',
-        {ul: this.generateCategoriasDataPDF()}
+        {text: 'Questionnaire', style: 'header'},
+        {
+          canvas: [
+            {
+              type: 'line',
+              x1: 0, y1: 0,
+              x2: 500, y2: 0,
+              lineWidth: 1
+            }
+          ]
+        },
+        {text: '', margin: [0, 5, 0, 5]},
+        {type: 'none', ul: this.generateCategoriasDataPDF()},
+        {image: this.image}
       ],
+      defaultStyle:{
+        //Font size etc
+      },
       styles: {
         header: {
-          fontSize: 18,
+          fontSize: 20,
           bold: true,
           margin: [0, 0, 0, 10]
         },
-        subheader: {
-          fontSize: 16,
+        listheader: {
+          fontSize: 18,
           bold: true,
           margin: [0, 10, 0, 5]
         },
         subsubheader:{
-          fontSize: 14,
+          fontSize: 16,
           bold: true,
-          margin: [0, 10, 0, 5]
-        },
-        tableExample: {
-          margin: [0, 5, 0, 15]
-        },
-        tableHeader: {
-          bold: true,
-          fontSize: 13,
-          color: 'black'
+          margin: [4, 10, 0, 5]
         }
-      },
-      defaultStyle: {
-        // alignment: 'justify'
       }
     }
 
     this.pdfObject = pdfMake.createPdf(docDef);
 
-    this.pdfObject.download('demo.pdf');
+    let date: Date = new Date();
+    
+    let pdfName = 'Results_'+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+'.pdf';
+    this.pdfObject.download(pdfName);
   }
 
   public getAreasConCategoriasSeleccionadas(): {nombre: string, categorias: Categoria[]}[]{
@@ -172,7 +186,7 @@ export class RecomendacionComponent implements OnInit {
 
     areas.forEach(area => {
       datosAreas.push([
-        {text: area.nombre, style: 'subheader'},
+        {text: area.nombre, style: 'listheader'},
         {type: 'lower-alpha',ol: area.categorias.map(categoria => categoria['nombre']),style: 'subsubheader'}
       ])
     })
