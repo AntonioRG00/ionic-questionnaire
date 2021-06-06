@@ -1,10 +1,16 @@
 <ion-app>
   <ion-content>
     <ion-list>
-      <h1 class="encabezado centrado">Seleccionar áreas de interés</h1>
+      <h1 class="encabezado centrado">Seleccionar perfil</h1>
+      <ion-item class="magin10">
+        <ion-label>Selecciona un perfil</ion-label>
+        <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="perfilChange($event.target.value)">
+          <ion-select-option *ngFor="let perfil of ticketService.ticketInformation.data.perfilesDisponibles" [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
-      <!--<div class="centrado" id="loading"><br><ion-spinner name="lines"></ion-spinner><br></div>-->
-      <div *ngFor="let area of ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
+      <h1 class="encabezado centrado">Seleccionar áreas de interés</h1>
+      <div *ngFor="let area of areasCandidatas">
         <ion-list-header>
           <h2>{{area.nombre}}</h2>
         </ion-list-header>
@@ -15,13 +21,6 @@
           </ion-item>
         </ion-list>
       </div>
-      <h1 class="encabezado centrado">Seleccionar perfil</h1>
-      <ion-item>
-        <ion-label>Selecciona un perfil</ion-label>
-        <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="ticketService.ticketInformation.recoleccionDatos.perfilUsuario = $event.target.value">
-          <ion-select-option *ngFor="let perfil of ticketService.ticketInformation.data.perfilesDisponibles" [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
-        </ion-select>
-      </ion-item>
     </ion-list>
   </ion-content>
 
