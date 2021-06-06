@@ -4,12 +4,13 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col>
-        <p>En base a sus respuestas debe considerar las siguientes recomendaciones:</p>
+        <h1 class="centrado txt-strong txt-subrayado">En base a sus respuestas debe considerar las siguientes recomendaciones</h1>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="12" size-md="10">
+      <ion-col size="12" size-md="12">
         <div *ngFor="let area of this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
+          <h2>- {{area.nombre}}</h2>
           <div *ngFor="let cat of area.categorias">
             <ng-container *ngIf="cat.isChecked">
               <ul>
@@ -17,7 +18,8 @@
                   <ol>
                     <div *ngFor="let pregunta of cat.preguntas">
                       <ng-container
-                        *ngIf="pregunta.puntuacionRecomendacion >= pregunta.respuestaSeleccionada.puntuacion">
+                        *ngIf="pregunta.perfil.perfil == this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario && 
+                          pregunta.puntuacionRecomendacion >= pregunta.respuestaSeleccionada.puntuacion">
                         <li [innerHTML]="pregunta.recomendacion"></li>
                       </ng-container>
                     </div>

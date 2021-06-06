@@ -96,13 +96,4 @@ export class TicketService {
         
     return noHayDatosNulos;
   }
-
-  /** Filtro para los datos 'Recomendacion' del ticket (True si pasa el filtrado) */
-  public checkTicketRecomendacion(): boolean{
-    let explicacion = this.ticketInformation.explicacion;
-
-    //TODO IMPLEMENTAR
-
-    return;
-  }
 }
