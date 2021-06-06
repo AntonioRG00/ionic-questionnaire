@@ -1,23 +1,53 @@
 <!-- Estructurar contenido en ion content e ion header -->
 <ion-app>
   <div>
-    <h1 class="encabezado centrado">Escaneo Rápido: Instrucciones</h1>
+    <h1 class="encabezado centrado">Questionnaire instructions</h1>
     <div class="magin10">
-      <h2>Para realizar el cuestionario sigue los siguientes pasos: </h2>
-      <ol>
-        <li>Escoge tu idioma</li>
-        <li>Selecciona las categorías deseadas</li>
-        <li>Indica tu perfil</li>
-        <li>Ya puedes realizar el cuestionario</li>
-        <li>Después, podrás ver los resultados</li>
-      </ol>
-      <p>Si deseas, adicionalmente podrás guardar los resultados del cuestionario en tu dispositivo.</p>
+      <h1 class="centrado txt-strong txt-subrayado">To take the questionnaire, do the following steps</h1>
+      <ion-card>
+        <ion-item class="ion-activated">
+          <ion-icon name="flag" slot="start"></ion-icon>
+          <ion-label>1. Select a country</ion-label>
+        </ion-item>
+        <ion-card-content>
+          Selecciona tu país 
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-item class="ion-activated">
+          <ion-icon name="document" slot="start"></ion-icon>
+          <ion-label>2. Acredit your data</ion-label>
+        </ion-item>
+        <ion-card-content>
+          Select a country for the questionnaire
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-item class="ion-activated">
+          <ion-icon name="help" slot="start"></ion-icon>
+          <ion-label>3. Answer all the questions</ion-label>
+        </ion-item>
+        <ion-card-content>
+          Select a country for the questionnaire
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-item class="ion-activated">
+          <ion-icon name="ribbon" slot="start"></ion-icon>
+          <ion-label>4. See your results! and export them to PDF</ion-label>
+        </ion-item>
+        <ion-card-content>
+          Select a country for the questionnaire
+        </ion-card-content>
+      </ion-card>
     </div>
     <div class="margin10">
       <ion-item>
-        <ion-label>Selecciona un idioma</ion-label>
+        <ion-label>Select a country</ion-label>
         <ion-select [value]="ticketService.ticketInformation.explicacion.idiomaSeleccionado.nombre" (ionChange)="onIdiomaSelectChange($event.target.value)">
-          <ion-select-option *ngFor="let idioma of ticketService.ticketInformation.data.idiomasDisponibles" [value]="idioma">{{idioma}}</ion-select-option>
+          <ion-select-option *ngFor="let idioma of ticketService.ticketInformation.data.idiomasDisponibles" [value]="idioma">
+            {{idioma}}
+          </ion-select-option>
         </ion-select>
       </ion-item>
     </div>
@@ -26,23 +56,13 @@
     <ion-toolbar>
       <ion-grid>
         <ion-row>
-          <ion-col col-12>
-            <div class="centrado">
-              <ion-button color="primary" (click)="onNextPage()"><ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
-            </div>
+          <ion-col offset-3 col-6>
+            <ion-button expand="block" color="primary" (click)="onNextPage()">
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-toolbar>
   </ion-footer>
 </ion-app>
-
-
-<!--<ion-grid>
-  <ion-row>
-    <ion-col col-12>
-
-
-    </ion-col>
-  </ion-row>
-</ion-grid>-->
