@@ -21,6 +21,8 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
 })
 export class RecomendacionComponent implements OnInit {
 
+  public datosAreas: Area[];
+
   pdfObject = null;
 
   areasConRecomendacion: any;
@@ -39,6 +41,9 @@ export class RecomendacionComponent implements OnInit {
       if(!ticketService.checkTicketCuestionario()){
         this.router.navigate(['cuestionario'])
       }
+
+      // Cargamos los datos
+      this.datosAreas = this.generarDatosRecomendaciones();
 
       // Obtenemos los nombres de las categorías seleccionadas
       let categoriasChecked = new Array<Categoria>();
@@ -90,9 +95,9 @@ export class RecomendacionComponent implements OnInit {
       animation:{
         onComplete: function(){
           this.image = this.toBase64Image();
-          console.log('image converted to base 64');
-          console.log(this.image.length);
-          console.log(this.image);
+          //console.log('image converted to base 64');
+          //console.log(this.image.length);
+          //console.log(this.image);
         }
       },
       scales: {
@@ -214,7 +219,18 @@ export class RecomendacionComponent implements OnInit {
         {type: 'lower-alpha',ol: area.categorias.map(categoria => categoria['nombre']),style: 'subsubheader'}
       ])
     })
-    return datosAreas
+    return datosAreas;
+  }
+
+  public generarDatosRecomendaciones(): Area[]{
+
+    let areas = this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas.filter(area => 
+      area.categorias.some(categoria => categoria.isChecked)
+    )
+
+    areas.forEach(area => console.log("AAAAAA: " + area.nombre))
+
+    return areas;
   }
 
 }

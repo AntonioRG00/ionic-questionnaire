@@ -9,10 +9,9 @@
     </ion-row>
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-md="12">
-        <div *ngFor="let area of this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
-          <h2>- {{area.nombre}}</h2>
+        <div *ngFor="let area of datosAreas">
+          <h2>{{area.nombre}}</h2>
           <div *ngFor="let cat of area.categorias">
-            <ng-container *ngIf="cat.isChecked">
               <ul>
                 <li class="nested-list"> <b>{{cat.nombre}}</b>| {{cat.descripcion}}
                   <ol>
@@ -26,7 +25,6 @@
                   </ol>
                 </li>
               </ul>
-            </ng-container>
           </div>
         </div>
       </ion-col>
