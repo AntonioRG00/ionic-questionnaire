@@ -11,6 +11,7 @@ import { attachView } from '@ionic/angular/providers/angular-delegate';
 import { FilesystemDirectory, Plugins } from '@capacitor/core';
 const { Filesystem } = Plugins;
 import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { popoverController } from '@ionic/core';
 
 
 
@@ -123,7 +124,7 @@ export class RecomendacionComponent implements OnInit {
     //Download pdf
     const docDef = {
       content: [
-        {text: 'Questionnaire', style: 'header'},
+        {text: 'Cuestionario', style: 'header'},
         {
           canvas: [
             {
@@ -135,7 +136,7 @@ export class RecomendacionComponent implements OnInit {
           ]
         },
         {text: '', margin: [0, 5, 0, 5]},
-        {type: 'none', ul: this.generateCategoriasDataPDF()}
+        {type: 'none', ul: this.generateCategoriasDataPDF(), margin: [-12, 0, 0, 0]}
         //{image: this.image}
       ],
       defaultStyle:{
@@ -206,18 +207,35 @@ export class RecomendacionComponent implements OnInit {
             .forEach(categoriaSeleccionada => areas[length-1].categorias.push(categoriaSeleccionada))
         }
       })
+
     return areas;
   }
 
-  public generateCategoriasDataPDF(): [{text: string, style: string},{type: string, ol: Array<String>, style: string}][] {
-    let datosAreas = new Array<[{text: string, style: string},{type: string, ol: Array<String>, style: string}]>();
+  public generateCategoriasDataPDF(): Array<{type?: string, text?: string, ol?: Array<String>, ul?: Array<String>, style?: string, margin?: Array<Number>}> {
+
+    let datosAreas = new Array<{type?: string, text?: string, ol?: Array<String>, ul?: Array<String>, style?: string, margin?: Array<Number>}>();
+
+    // Nos traemos las áreas y filtramos por perfil
     let areas = this.getAreasConCategoriasSeleccionadas();
 
     areas.forEach(area => {
-      datosAreas.push([
-        {text: area.nombre, style: 'listheader'},
-        {type: 'lower-alpha',ol: area.categorias.map(categoria => categoria['nombre']),style: 'subsubheader'}
-      ])
+      // Introducimos el nombre del área
+      datosAreas.push({text: area.nombre, type: 'none', style: 'listheader'})
+
+      area.categorias.forEach(categoria => {
+        // Introducimos el nombre de la categoría
+        datosAreas.push({text: '- '+categoria.nombre, style: 'subsubheader'})
+
+        categoria.preguntas.filter(pregunta => 
+          pregunta.perfil.perfil == this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario).forEach(pregunta => {
+          // Introducimos el nombre de la pregunta
+          datosAreas.push({text: pregunta.pregunta, margin: [0,5]})
+          
+          datosAreas.push({text: 'Respuesta: ' + pregunta.respuestaSeleccionada.respuesta.respuesta})
+        })
+      })
+
+      area.categorias.forEach(categoria => categoria.preguntas.map(pregunta => pregunta['pregunta']))
     })
     return datosAreas;
   }
