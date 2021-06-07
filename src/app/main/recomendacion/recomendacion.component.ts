@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Area, Categoria } from '../services/interfaces/cuestionario';
 import { attachView } from '@ionic/angular/providers/angular-delegate';
-
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+
+import { FilesystemDirectory, Plugins } from '@capacitor/core';
+const { Filesystem } = Plugins;
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 
 
@@ -30,7 +33,9 @@ export class RecomendacionComponent implements OnInit {
   image: string;
 
   constructor(public ticketService: TicketService, private router: Router,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    public platform: Platform,
+    public fileOpener: FileOpener) {
 
       // Volver de proceso ya que no ha pasado el filtro
       if(!ticketService.checkTicketCuestionario()){
@@ -130,8 +135,8 @@ export class RecomendacionComponent implements OnInit {
           ]
         },
         {text: '', margin: [0, 5, 0, 5]},
-        {type: 'none', ul: this.generateCategoriasDataPDF()},
-        {image: this.image}
+        {type: 'none', ul: this.generateCategoriasDataPDF()}
+        //{image: this.image}
       ],
       defaultStyle:{
         //Font size etc
@@ -160,7 +165,31 @@ export class RecomendacionComponent implements OnInit {
     let date: Date = new Date();
     
     let pdfName = 'Results_'+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+'.pdf';
-    this.pdfObject.download(pdfName);
+
+
+    if (this.platform.is('cordova')){
+      console.log('this platform is cordova')
+      this.pdfObject.getBase64(async (data) => {
+        try{
+          let path = `pdf/Results_${Date.now()}.pdf`;
+
+          const result = await Filesystem.writeFile({
+            path,
+            data,
+            directory: FilesystemDirectory.Documents,
+            recursive: true
+          })
+          this.fileOpener.open(`${result.uri}`, 'application/pdf');
+
+        } catch (e) {
+          console.error('Unable to write file', e);
+        }
+      });
+    } else {
+      console.log('this platform is desktop')
+      this.pdfObject.download(pdfName);
+    }
+    
   }
 
   public getAreasConCategoriasSeleccionadas(): {nombre: string, categorias: Categoria[]}[]{
