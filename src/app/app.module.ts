@@ -15,13 +15,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
 import { SplashComponent } from './components/splash/splash.component';
 
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+
 @NgModule({
   declarations: [AppComponent,
   ],
   entryComponents: [],
   imports: [HttpClientModule, HttpClientInMemoryWebApiModule, BrowserModule, BrowserAnimationsModule,
     IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, ChartModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, FileOpener],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
