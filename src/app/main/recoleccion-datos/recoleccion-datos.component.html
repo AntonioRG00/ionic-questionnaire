@@ -1,15 +1,15 @@
 <ion-app>
   <ion-content>
     <ion-list>
-      <h1 class="encabezado centrado">Seleccionar perfil</h1>
+      <h1 class="encabezado centrado">{{"SELECT_PROFILE" | translate}}</h1>
       <ion-item class="magin10">
-        <ion-label>Selecciona un perfil</ion-label>
+        <ion-label>{{"SELECT_PROFILE" | translate}}</ion-label>
         <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="perfilChange($event.target.value)">
           <ion-select-option *ngFor="let perfil of ticketService.ticketInformation.data.perfilesDisponibles" [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
         </ion-select>
       </ion-item>
 
-      <h1 class="encabezado centrado">Seleccionar áreas de interés</h1>
+      <h1 class="encabezado centrado">{{"SELECT_AREAS" | translate}}</h1>
       <div *ngFor="let area of areasCandidatas">
         <ion-list-header>
           <h2>{{area.nombre}}</h2>

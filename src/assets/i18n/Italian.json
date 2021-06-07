@@ -1,0 +1,31 @@
+{
+  "_STEP 1": "PAGE STEP 1",
+  "QUESTIONNAIRE_INSTRUCTIONS": "Quiz: Istruzioni",
+  "SELECT_LANGUAGE" : "Seleziona la tua lingua",
+  "FOLLOW_STEPS" : "Per rispondere al questionario, segui questi passaggi ",
+  "STEP_ONE_SELECT" : "1. Seleziona un paese ",
+  "STEP_ONE_EXPL" : "Scegli il tuo paese ",
+  "STEP_TWO_SELECT" : "2. Seleziona un profilo ",
+  "STEP_TWO_EXPL": "Per una maggiore precisione, ti faremo domande in base al tuo profilo ",
+  "STEP_THREE_SELECT" : "3. Rispondi a tutte le domande ",
+  "STEP_THREE_EXPL" : "Per ottenere i risultati è necessario che tu risponda a tutte le domande ",
+  "STEP_FOUR_SELECT": "4. Guarda i tuoi risultati! Salvali sul tuo dispositivo ",
+  "STEP_FOUR_EXPL" : "Alla fine del questionario potrai scaricare i risultati ",
+  "FINAL_SELECT_COUNTR" : "Seleziona un paese",
+
+  "_STEP 2": "PAGE STEP 2",
+  "SELECT_PROFILE": "Seleziona profilo",
+  "SELECT_AREAS": "Seleziona aree ",
+
+  "_STEP_4": "PAGE STEP 4",
+  "RESULTS" : "Risultati",
+  "CONSIDER_RECOM": "Sulla base delle tue risposte, dovresti prendere in considerazione i seguenti consigli",
+  "DOWNLOAD" : "Scarica i risultati",
+
+  "_MENU_STEPS": "MENU STEPPER",
+  "STEP_1" : "Spiegazione",
+  "STEP_2" : "Raccolta dati ",
+  "STEP_3" : "Questionario",
+  "STEP_4" : "Risultati"
+
+}

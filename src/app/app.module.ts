@@ -8,7 +8,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,12 +17,25 @@ import { SplashComponent } from './components/splash/splash.component';
 
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(httpClient: HttpClient){
+  return new TranslateHttpLoader(httpClient, "../assets/i18n/", ".json");
+}
 @NgModule({
   declarations: [AppComponent,
   ],
   entryComponents: [],
   imports: [HttpClientModule, HttpClientInMemoryWebApiModule, BrowserModule, BrowserAnimationsModule,
-    IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, ChartModule],
+    IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, ChartModule,
+  TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+    }
+  })],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, FileOpener],
   bootstrap: [AppComponent],
 })

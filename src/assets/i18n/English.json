@@ -1,0 +1,30 @@
+{
+  "_STEP 1": "PAGE STEP 1",
+  "QUESTIONNAIRE_INSTRUCTIONS": "Questionnaire instructions",
+  "SELECT_LANGUAGE" : "Select your language",
+  "FOLLOW_STEPS" : "To take the questionnaire, do the following steps",
+  "STEP_ONE_SELECT" : "1. Select a country",
+  "STEP_ONE_EXPL" : "Select your country",
+  "STEP_TWO_SELECT" : "2. Select a profile",
+  "STEP_TWO_EXPL": "For greater precision, we will ask you questions based on your profile ",
+  "STEP_THREE_SELECT" : "3. Answer all the questions",
+  "STEP_THREE_EXPL" : "In order to obtain the results, it is necessary that you answer all the questions ",
+  "STEP_FOUR_SELECT": "4. See your results! Save them on your device",
+  "STEP_FOUR_EXPL" : "At the end of this questionary you will be able to download your results",
+  "FINAL_SELECT_COUNTR" : "Select a country",
+
+  "_STEP 2": "PAGE STEP 2",
+  "SELECT_PROFILE": "Select a profile",
+  "SELECT_AREAS": "Select areas",
+
+  "_STEP_4": "PAGE STEP 4",
+  "RESULTS" : "Results",
+  "CONSIDER_RECOM": "Based on your answers, you should consider the following recommendations",
+  "DOWNLOAD" : "Download results",
+
+  "_MENU_STEPS": "MENU STEPPER",
+  "STEP_1" : "Explanation",
+  "STEP_2" : "Data collection",
+  "STEP_3" : "Questionnaire",
+  "STEP_4" : "Results"
+}

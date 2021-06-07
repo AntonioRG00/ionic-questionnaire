@@ -2,49 +2,57 @@
 <ion-app>
   <ion-content>
   <div>
-    <h1 class="encabezado centrado">Questionnaire instructions</h1>
+    <h1 class="encabezado centrado">{{"QUESTIONNAIRE_INSTRUCTIONS" | translate}}</h1>
+    <div class="margin10">
+      <ion-item>
+        <ion-label>{{"SELECT_LANGUAGE" | translate}}</ion-label>
+        <ion-select [ngModel]="idioma" (ionChange)="changeLang($event)">
+          <ion-select-option *ngFor="let lang of langs">{{lang}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
     <div class="magin10">
-      <h1 class="centrado txt-strong txt-subrayado">To take the questionnaire, do the following steps</h1>
+      <h1 class="centrado txt-strong txt-subrayado">{{ "FOLLOW_STEPS" | translate}}</h1>
       <ion-card>
         <ion-item class="ion-activated">
           <ion-icon name="flag" slot="start"></ion-icon>
-          <ion-label>1. Select a country</ion-label>
+          <ion-label>{{ "STEP_ONE_SELECT" | translate}}</ion-label>
         </ion-item>
         <ion-card-content>
-          Select your country 
+          {{ "STEP_ONE_EXPL" | translate}} 
         </ion-card-content>
       </ion-card>
       <ion-card>
         <ion-item class="ion-activated">
           <ion-icon name="document" slot="start"></ion-icon>
-          <ion-label>2. Acredit your data</ion-label>
+          <ion-label>{{ "STEP_TWO_SELECT" | translate}}</ion-label>
         </ion-item>
         <ion-card-content>
-          Choose a profile
+          {{ "STEP_TWO_EXPL" | translate}}
         </ion-card-content>
       </ion-card>
       <ion-card>
         <ion-item class="ion-activated">
           <ion-icon name="help" slot="start"></ion-icon>
-          <ion-label>3. Answer all the questions</ion-label>
+          <ion-label>{{ "STEP_THREE_SELECT" | translate}}</ion-label>
         </ion-item>
         <ion-card-content>
-          Select a country for the questionnaire
+          {{ "STEP_THREE_EXPL" | translate}}
         </ion-card-content>
       </ion-card>
       <ion-card>
         <ion-item class="ion-activated">
           <ion-icon name="ribbon" slot="start"></ion-icon>
-          <ion-label>4. See your results! and export them to PDF</ion-label>
+          <ion-label>{{ "STEP_FOUR_SELECT" | translate}}</ion-label>
         </ion-item>
         <ion-card-content>
-          At the end of this questionary you will be able to download your results 
+          {{ "STEP_FOUR_EXPL" | translate}} 
         </ion-card-content>
       </ion-card>
     </div>
     <div class="margin10">
       <ion-item>
-        <ion-label>Select a country</ion-label>
+        <ion-label>{{ "FINAL_SELECT_COUNTR" | translate}}</ion-label>
         <ion-select [value]="ticketService.ticketInformation.explicacion.idiomaSeleccionado.nombre" (ionChange)="onIdiomaSelectChange($event.target.value)">
           <ion-select-option *ngFor="let idioma of ticketService.ticketInformation.data.idiomasDisponibles" [value]="idioma">
             {{idioma}}

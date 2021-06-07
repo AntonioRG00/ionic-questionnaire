@@ -22,6 +22,7 @@ import {AccordionModule} from 'primeng/accordion';
 import {ChartModule} from 'primeng/chart';
 
 
+
 @NgModule({
   imports: [
     RouterModule.forChild([
@@ -32,7 +33,7 @@ import {ChartModule} from 'primeng/chart';
 				{path: 'recomendacion', component: RecomendacionComponent}
 			]}
 		]),
-    TranslateModule.forRoot(),
+    TranslateModule,
     CommonModule,
     FormsModule,
     IonicModule,

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { MainPage } from '../main.page';
 
 @Component({
   selector: 'app-explicacion',
@@ -10,8 +12,14 @@ import { AlertController } from '@ionic/angular';
 })
 export class ExplicacionComponent implements OnInit {
 
+  langs: string [] = [];
+
   constructor(public ticketService: TicketService, private router: Router,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    private translateService: TranslateService,
+    @Inject(MainPage) private mainPage: MainPage) { 
+      this.langs = this.translateService.getLangs();
+    }
 
   ngOnInit() {}
 
@@ -44,5 +52,11 @@ export class ExplicacionComponent implements OnInit {
     // Ponemos todas las categorías de los demás idiomas deseleccionadas
     this.ticketService.ticketInformation.data.allDataRest.filter(x => x.nombre !== languaje)
       .forEach(idioma => idioma.areas.forEach(area => area.categorias.forEach(categoria => categoria.isChecked = false)))
+  }
+
+  public changeLang(event){
+    this.translateService.use(event.detail.value);
+    this.mainPage.getCuestionario();
+    console.log(event.detail.value);
   }
 }
