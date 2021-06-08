@@ -9,7 +9,7 @@
         </ion-select>
       </ion-item>
 
-      <h1 class="encabezado centrado">{{"SELECT_AREAS" | translate}}</h1>
+      <h1 *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario != ''" class="encabezado centrado">{{"SELECT_AREAS" | translate}}</h1>
       <div *ngFor="let area of areasCandidatas">
         <ion-list-header>
           <h2>{{area.nombre}}</h2>
