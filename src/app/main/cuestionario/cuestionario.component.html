@@ -11,7 +11,7 @@
             <div *ngFor="let area of ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
               <div *ngFor="let cat of area.categorias">
                 <ng-container *ngIf="comprobarCategoria(cat)">
-                  <p-accordion [multiple]="true">
+                  <p-accordion>
                     <p-accordionTab>
                       <ng-template pTemplate="header"><b>{{ cat.nombre }}</b>| {{ cat.descripcion }}</ng-template>
                       <!-- Questions -->
