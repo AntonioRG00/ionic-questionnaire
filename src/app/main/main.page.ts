@@ -9,14 +9,13 @@ import { MenuItem } from 'primeng/api';
 })
 export class MainPage implements OnInit {
 
+  //propiedad = 7;
+
   public explicacion;
   public menuPorPasos: MenuItem[];
   public menuPorPasosMovil: MenuItem[];
 
   constructor(private translateService: TranslateService) {
-    let recoleccion;
-    
-    console.log(this.explicacion);
   }
 
   ngOnInit() {
