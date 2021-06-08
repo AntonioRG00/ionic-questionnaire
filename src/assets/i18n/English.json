@@ -1,8 +1,8 @@
 {
   "_STEP 1": "PAGE STEP 1",
-  "QUESTIONNAIRE_INSTRUCTIONS": "Questionnaire instructions",
+  "QUESTIONNAIRE_INSTRUCTIONS": "Questionnaire: Instructions",
   "SELECT_LANGUAGE" : "Select your language",
-  "FOLLOW_STEPS" : "To take the questionnaire, do the following steps",
+  "FOLLOW_STEPS" : "To take the questionnaire, follow the steps",
   "STEP_ONE_SELECT" : "1. Select a country",
   "STEP_ONE_EXPL" : "Select your country",
   "STEP_TWO_SELECT" : "2. Select a profile",
