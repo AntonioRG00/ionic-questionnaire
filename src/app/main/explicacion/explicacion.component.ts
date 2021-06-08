@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { MainPage } from '../main.page';
 
 @Component({
   selector: 'app-explicacion',
@@ -13,11 +12,11 @@ import { MainPage } from '../main.page';
 export class ExplicacionComponent implements OnInit {
 
   langs: string [] = [];
+  anim: Animation;
 
   constructor(public ticketService: TicketService, private router: Router,
     public alertController: AlertController,
-    private translateService: TranslateService,
-    @Inject(MainPage) private mainPage: MainPage) { 
+    private translateService: TranslateService) { 
       this.langs = this.translateService.getLangs();
     }
 

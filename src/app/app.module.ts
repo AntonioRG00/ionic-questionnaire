@@ -17,8 +17,9 @@ import { SplashComponent } from './components/splash/splash.component';
 
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 export function HttpLoaderFactory(httpClient: HttpClient){
   return new TranslateHttpLoader(httpClient, "../assets/i18n/", ".json");

@@ -52,14 +52,17 @@
       </ion-card>
     </div>
     <div class="margin10">
-      <ion-item>
-        <ion-label>{{ "FINAL_SELECT_COUNTR" | translate}}</ion-label>
-        <ion-select [value]="ticketService.ticketInformation.explicacion.idiomaSeleccionado.nombre" (ionChange)="onIdiomaSelectChange($event.target.value)">
-          <ion-select-option *ngFor="let idioma of ticketService.ticketInformation.data.idiomasDisponibles" [value]="idioma">
-            {{idioma}}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
+      <ion-card>
+        <ion-item class="ion-activated">
+          <ion-label>{{ "FINAL_SELECT_COUNTR" | translate}}</ion-label>
+          <ion-select [value]="ticketService.ticketInformation.explicacion.idiomaSeleccionado.nombre" (ionChange)="onIdiomaSelectChange($event.target.value)">
+            <ion-select-option *ngFor="let idioma of ticketService.ticketInformation.data.idiomasDisponibles" [value]="idioma">
+              {{idioma}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card>
+     
     </div>
   </div>
 </ion-content>

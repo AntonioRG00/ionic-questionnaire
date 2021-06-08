@@ -20,6 +20,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { SplashComponent } from '../components/splash/splash.component';
 import {AccordionModule} from 'primeng/accordion';
 import {ChartModule} from 'primeng/chart';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 
 
@@ -41,7 +42,8 @@ import {ChartModule} from 'primeng/chart';
     CheckboxModule,
     MainPageRoutingModule,
     AccordionModule,
-    ChartModule
+    ChartModule,
+    ProgressBarModule
   ],
   declarations: [
     MainPage,
