@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
@@ -56,7 +56,10 @@ export class ExplicacionComponent implements OnInit {
 
   public changeLang(event){
     this.translateService.use(event.detail.value);
-    this.mainPage.getCuestionario();
+    //this.mainPage.getCuestionario();
+    //console.log(this.mainPage.menuPorPasos[0].label)
+    //console.log(this.mainPage.menuPorPasos[0].label)
+    //console.log('La propiedad de main page:' + this.mainPage.propiedad);
     console.log(event.detail.value);
   }
 }

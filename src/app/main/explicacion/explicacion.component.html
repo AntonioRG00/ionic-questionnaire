@@ -3,16 +3,17 @@
   <ion-content>
   <div>
     <h1 class="encabezado centrado">{{"QUESTIONNAIRE_INSTRUCTIONS" | translate}}</h1>
-    <div class="margin10">
-      <ion-item>
-        <ion-label>{{"SELECT_LANGUAGE" | translate}}</ion-label>
-        <ion-select [ngModel]="idioma" (ionChange)="changeLang($event)">
-          <ion-select-option *ngFor="let lang of langs">{{lang}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </div>
     <div class="magin10">
       <h1 class="centrado txt-strong txt-subrayado">{{ "FOLLOW_STEPS" | translate}}</h1>
+      <ion-card>
+        <ion-item class="ion-activated">
+          <ion-label>{{"SELECT_LANGUAGE" | translate}}</ion-label>
+          <ion-select [ngModel]="idioma" (ionChange)="changeLang($event)">
+            <ion-select-option *ngFor="let lang of langs">{{lang}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card>
+      
       <ion-card>
         <ion-item class="ion-activated">
           <ion-icon name="flag" slot="start"></ion-icon>
