@@ -18,8 +18,10 @@ import { RecomendacionComponent } from './recomendacion/recomendacion.component'
 import { StepsModule } from 'primeng/steps';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SplashComponent } from '../components/splash/splash.component';
-import {AccordionModule} from 'primeng/accordion';
-import {ChartModule} from 'primeng/chart';
+import { AccordionModule } from 'primeng/accordion';
+import { ChartModule } from 'primeng/chart';
+import { TabViewModule } from 'primeng/tabview';
+import { DividerModule } from 'primeng/divider';
 
 
 
@@ -38,6 +40,8 @@ import {ChartModule} from 'primeng/chart';
     FormsModule,
     IonicModule,
     StepsModule,
+    TabViewModule,
+    DividerModule,
     CheckboxModule,
     MainPageRoutingModule,
     AccordionModule,

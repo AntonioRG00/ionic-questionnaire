@@ -23,6 +23,7 @@ import { popoverController } from '@ionic/core';
 export class RecomendacionComponent implements OnInit {
 
   public datosAreas: Area[];
+  public indexTabPanel = 0;
 
   pdfObject = null;
 
@@ -44,7 +45,7 @@ export class RecomendacionComponent implements OnInit {
       }
 
       // Cargamos los datos
-      this.datosAreas = this.generarDatosRecomendaciones();
+      //this.datosAreas = this.generarDatosRecomendaciones();
 
       // Obtenemos los nombres de las categorías seleccionadas
       let categoriasChecked = new Array<Categoria>();
@@ -215,7 +216,7 @@ export class RecomendacionComponent implements OnInit {
 
     let datosAreas = new Array<{type?: string, text?: string, ol?: Array<String>, ul?: Array<String>, style?: string, margin?: Array<Number>}>();
 
-    // Nos traemos las áreas y filtramos por perfil
+    // Nos traemos las áreas
     let areas = this.getAreasConCategoriasSeleccionadas();
 
     areas.forEach(area => {
@@ -231,24 +232,12 @@ export class RecomendacionComponent implements OnInit {
           // Introducimos el nombre de la pregunta
           datosAreas.push({text: pregunta.pregunta, margin: [0,5]})
           
+          // Introducimos la respuesta seleccionada
           datosAreas.push({text: 'Respuesta: ' + pregunta.respuestaSeleccionada.respuesta.respuesta})
         })
       })
-
-      area.categorias.forEach(categoria => categoria.preguntas.map(pregunta => pregunta['pregunta']))
     })
     return datosAreas;
-  }
-
-  public generarDatosRecomendaciones(): Area[]{
-
-    let areas = this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas.filter(area => 
-      area.categorias.some(categoria => categoria.isChecked)
-    )
-
-    areas.forEach(area => console.log("AAAAAA: " + area.nombre))
-
-    return areas;
   }
 
 }
