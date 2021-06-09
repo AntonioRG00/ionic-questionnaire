@@ -21,6 +21,9 @@
   "RESULTS" : "Results",
   "CONSIDER_RECOM": "Based on your answers, you should consider the following recommendations",
   "DOWNLOAD" : "Download results",
+  "GRAPH" : "Chart",
+  "EXPL_GRAPH": "Graphic representation of the score obtained in the selected areas. A higher score means a more positive evaluation.",
+  "GRAPH_REC_WARNING" : "Recommendations are grouped by area. Note that if the evaluation is positive, no recommendation may be shown.",
 
   "_MENU_STEPS": "MENU STEPPER",
   "STEP_1" : "Explanation",

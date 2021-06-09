@@ -21,6 +21,9 @@
   "RESULTS" : "Resultados",
   "CONSIDER_RECOM": "En base a sus respuestas debe considerar las siguientes recomendaciones",
   "DOWNLOAD" : "Descargar resultados",
+  "GRAPH" : "Gráfico",
+  "EXPL_GRAPH": "Representación gráfica de la puntuación obtenida en las áreas seleccionadas. Una puntuación más alta significa una evaluación más positiva.",
+  "GRAPH_REC_WARNING" : "Las recomendaciones se agrupan por área. Tenga en cuenta que si la evaluación es positiva podría no mostrarse ninguna recomendación.",
 
   "_MENU_STEPS": "MENU STEPPER",
   "STEP_1" : "Explicación",
