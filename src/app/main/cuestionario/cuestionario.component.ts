@@ -47,7 +47,7 @@ export class CuestionarioComponent implements OnInit {
 
     // Sacamos el total de preguntas
     let totalPreguntas = 0, totalPreguntasRespondidas = 0;
-    this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas.forEach(area => area.categorias.forEach(categoria => categoria.preguntas.forEach(pregunta => {
+    this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.forEach(area => area.categorias.forEach(categoria => categoria.preguntas.forEach(pregunta => {
       totalPreguntas++;
       if(pregunta.respuestaSeleccionada != null){
         totalPreguntasRespondidas++;

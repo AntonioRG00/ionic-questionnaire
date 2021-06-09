@@ -5,17 +5,13 @@
       <ion-card>
         <ion-item class="magin10 ion-activated">
           <ion-label>{{"SELECT_PROFILE" | translate}}</ion-label>
-          <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario"
-            (ionChange)="perfilChange($event.target.value)">
-            <ion-select-option *ngFor="let perfil of ticketService.ticketInformation.data.perfilesDisponibles"
-              [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
+          <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="perfilChange($event.target.value)">
+            <ion-select-option *ngFor="let perfil of ticketService.ticketInformation.data.perfilesDisponibles" [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-card>
 
-
-      <h1 *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario != ''" class="encabezado centrado">
-        {{"SELECT_AREAS" | translate}}</h1>
+      <h1 *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario != ''" class="encabezado centrado">{{"SELECT_AREAS" | translate}}</h1>
 
       <div *ngFor="let area of areasCandidatas">
         <ion-list-header>
@@ -28,11 +24,8 @@
           </ion-item>
         </ion-list>
       </div>
-
-
     </ion-list>
   </ion-content>
-
   <ion-footer class="ion-no-border">
     <ion-toolbar>
       <ion-grid>

@@ -19,7 +19,8 @@ export class TicketService {
       idiomaSeleccionado: new Object as Idioma
     },
     recoleccionDatos: {
-      perfilUsuario: ''
+      perfilUsuario: '',
+      idiomaFiltradoCheckedPerfil: new Object as Idioma
     }
   };
 

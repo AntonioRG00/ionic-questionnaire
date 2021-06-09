@@ -33,23 +33,35 @@ export class RecoleccionDatosComponent {
   }
 
   public onNextPage(){
+    if(this.ticketService.checkTicketRecoleccionDatos()){
+      
+      // Clonamos los datos
+      this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil = 
+        JSON.parse(JSON.stringify(this.ticketService.ticketInformation.explicacion.idiomaSeleccionado))
 
-    // Filtramos los datos por categoría checked y preguntas para el perfil seleccionado
-    this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas.forEach(area => 
-      area.categorias.forEach((categoria, indexCategoria, categorias) => {
-        if(!categoria.isChecked) {
-          categorias.splice(indexCategoria, 1);
-        } else {
-          categoria.preguntas.forEach((pregunta, indexPregunta, preguntas) => {
-            if(pregunta.perfil.perfil != this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario){
-              preguntas.splice(indexPregunta, 1);
+      // Filtramos los datos por categoría checked y preguntas para el perfil seleccionado
+      let copiaDatos = this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas;
+      this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.forEach((area, indexArea, areas) => {
+        if(area.categorias.some(categoria => categoria.isChecked)) {
+          area.categorias.forEach((categoria, indexCategoria, categorias) => {
+            console.log("sd"+categoria.nombre)
+            if(categoria.isChecked == null || !categoria.isChecked) {
+              categorias.splice(indexCategoria, 1);
+              console.log("borrando: " + categoria.nombre)
+            } else {
+              console.log("dejo: " + categoria.nombre)
+              categoria.preguntas.forEach((pregunta, indexPregunta, preguntas) => {
+                if(pregunta.perfil.perfil != this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario){
+                  preguntas.splice(indexPregunta, 1);
+                }
+              })
             }
           })
+        } else {
+          areas.splice(indexArea, 1)
         }
       })
-    )
 
-    if(this.ticketService.checkTicketRecoleccionDatos()){
       console.log("Redirect to: cuestionario")
       this.router.navigate(['cuestionario'])
     } else {
