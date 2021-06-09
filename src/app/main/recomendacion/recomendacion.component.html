@@ -5,7 +5,7 @@
       <ion-row class="ion-justify-content-center">
         <ion-col size="12">
           <p-tabView (onChange)="indexTabPanel = $event.index">
-            <p-tabPanel [header]="area.nombre" *ngFor="let area of ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas; let i = index" [selected]="i == indexTabPanel">
+            <p-tabPanel [header]="area.nombre" *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas; let i = index" [selected]="i == indexTabPanel">
               <div *ngFor="let cat of area.categorias">
                 <ul>
                   <li class="nested-list"> <b>{{cat.nombre}}</b>| {{cat.descripcion}}

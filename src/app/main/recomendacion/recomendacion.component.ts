@@ -44,9 +44,6 @@ export class RecomendacionComponent implements OnInit {
         this.router.navigate(['cuestionario'])
       }
 
-      // Cargamos los datos
-      //this.datosAreas = this.generarDatosRecomendaciones();
-
       // Obtenemos los nombres de las categorías seleccionadas
       let categoriasChecked = new Array<Categoria>();
       ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas
@@ -55,16 +52,16 @@ export class RecomendacionComponent implements OnInit {
       console.log("Categorías checked: " + categoriasChecked);
 
       // Obtenemos la puntuación total de cada categoría y la puntuación máxima posible por categorías seleccionadas
-      let puntuacionCategoriasChecked = new Array<number>(categoriasChecked.length);
-      let puntuacionMaximaPorCategoria = new Array<number>(categoriasChecked.length);
-      categoriasChecked.forEach((categoria, index) => {
-        puntuacionCategoriasChecked[index]=0;
-        puntuacionMaximaPorCategoria[index]=0;
-        categoria.preguntas.filter(pregunta => pregunta.perfil.perfil == ticketService.ticketInformation.recoleccionDatos.perfilUsuario)
-          .forEach(pregunta => {
+      let puntuacionCategoriasChecked = new Array<number>();
+      let puntuacionMaximaPorCategoria = new Array<number>();
+
+      this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.forEach((area, index) => {
+        puntuacionCategoriasChecked.push(0)
+        puntuacionMaximaPorCategoria.push(0)
+        area.categorias.forEach(categoria => categoria.preguntas.forEach(pregunta => {
             puntuacionCategoriasChecked[index]+=pregunta.respuestaSeleccionada.puntuacion;
-            puntuacionMaximaPorCategoria[index]+=pregunta.respuestas[pregunta.respuestas.length-1].puntuacion;
-          })
+            puntuacionMaximaPorCategoria[index]+=pregunta.respuestas[pregunta.respuestas.length-1].puntuacion
+        }))
       })
       console.log("Puntuación total por categoría: " + puntuacionCategoriasChecked)
       console.log("Puntuaciones máximas posibles por categoría: " + puntuacionMaximaPorCategoria)
@@ -198,7 +195,7 @@ export class RecomendacionComponent implements OnInit {
 
     let datosAreas = new Array<{type?: string, text?: string, ol?: Array<String>, ul?: Array<String>, style?: string, margin?: Array<Number>}>();
 
-    this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas.forEach(area => {
+    this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.forEach(area => {
       // Introducimos el nombre del área
       datosAreas.push({text: area.nombre, type: 'none', style: 'listheader'})
 

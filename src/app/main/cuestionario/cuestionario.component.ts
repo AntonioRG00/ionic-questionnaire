@@ -24,10 +24,7 @@ export class CuestionarioComponent implements OnInit {
       }
     }
 
-  ngOnInit() {
-    console.log('Numero de preguntas')
-    console.log()
-  }
+  ngOnInit() {}
 
   public onNextPage(){
     if(this.ticketService.checkTicketCuestionario()){
