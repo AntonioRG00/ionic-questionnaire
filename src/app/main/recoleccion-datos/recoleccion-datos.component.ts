@@ -33,6 +33,22 @@ export class RecoleccionDatosComponent {
   }
 
   public onNextPage(){
+
+    // Filtramos los datos por categoría checked y preguntas para el perfil seleccionado
+    this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas.forEach(area => 
+      area.categorias.forEach((categoria, indexCategoria, categorias) => {
+        if(!categoria.isChecked) {
+          categorias.splice(indexCategoria, 1);
+        } else {
+          categoria.preguntas.forEach((pregunta, indexPregunta, preguntas) => {
+            if(pregunta.perfil.perfil != this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario){
+              preguntas.splice(indexPregunta, 1);
+            }
+          })
+        }
+      })
+    )
+
     if(this.ticketService.checkTicketRecoleccionDatos()){
       console.log("Redirect to: cuestionario")
       this.router.navigate(['cuestionario'])

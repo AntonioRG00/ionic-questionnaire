@@ -20,11 +20,6 @@ export class TicketService {
     },
     recoleccionDatos: {
       perfilUsuario: ''
-    },
-    cuestionario: {
-
-    },
-    recomendacion: {
     }
   };
 

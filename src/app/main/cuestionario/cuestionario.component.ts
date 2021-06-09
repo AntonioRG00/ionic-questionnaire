@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
-import { Categoria } from '../services/interfaces/cuestionario';
+import { Area, Categoria, Pregunta } from '../services/interfaces/cuestionario';
 import {ProgressBarModule} from 'primeng/progressbar';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-cuestionario',
@@ -12,7 +13,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 })
 export class CuestionarioComponent implements OnInit {
 
-  value = 0;
+  public barraProgreso = 0;
 
   constructor(public ticketService: TicketService, private router: Router,
     public alertController: AlertController) {
@@ -42,16 +43,19 @@ export class CuestionarioComponent implements OnInit {
     this.router.navigate(['recoleccionDatos'])
   }
 
-  /** Comprueba que la categoría este seleccionada y tenga preguntas del perfil seleccionado */
-  public comprobarCategoria(categoria: Categoria): boolean {
-    return categoria.preguntas.some(x => x.perfil.perfil == this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario) && categoria.isChecked;
-  }
+  public recalcularProgressBar(){
 
-  public sumProgress(event){
-    console.log(event);
-    if(true){// no habia sido seleccionada
-      this.value++;
-    }
-    
+    // Sacamos el total de preguntas
+    let totalPreguntas = 0, totalPreguntasRespondidas = 0;
+    this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas.forEach(area => area.categorias.forEach(categoria => categoria.preguntas.forEach(pregunta => {
+      totalPreguntas++;
+      if(pregunta.respuestaSeleccionada != null){
+        totalPreguntasRespondidas++;
+      }
+    })))
+
+    // Recalculamos el valor de la barra de progreso
+    this.barraProgreso = Math.floor((100/totalPreguntas)*totalPreguntasRespondidas);
+    console.log(`TotalPreguntas ${totalPreguntas}, Respondidas ${totalPreguntasRespondidas}, Progreso ${this.barraProgreso}`)
   }
 }

@@ -1,7 +1,7 @@
 <ion-app>
   <ion-header class="ion-no-border">
     <ion-toolbar>  
-      <p-progressBar [value]="value"></p-progressBar>
+      <p-progressBar [value]="barraProgreso"></p-progressBar>
     </ion-toolbar>
   </ion-header>
   <ion-content>
@@ -10,16 +10,14 @@
         <ion-col size="12" size-md="10">
             <div *ngFor="let area of ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas">
               <div *ngFor="let cat of area.categorias">
-                <ng-container *ngIf="comprobarCategoria(cat)">
                   <p-accordion>
                     <p-accordionTab>
                       <ng-template pTemplate="header"><b>{{ cat.nombre }}</b>| {{ cat.descripcion }}</ng-template>
                       <!-- Questions -->
                       <ng-template pTemplate="content">
                         <div *ngFor="let pregunta of cat.preguntas">
-                          <ng-container *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario == pregunta.perfil.perfil">
                             <ion-list>
-                              <ion-radio-group [value]="pregunta.respuestaSeleccionada" allow-empty-selection="false" (ionChange)="pregunta.respuestaSeleccionada = $event.detail.value; sumProgress($event.detail.value)">
+                              <ion-radio-group [value]="pregunta.respuestaSeleccionada" allow-empty-selection="false" (ionChange)="pregunta.respuestaSeleccionada = $event.detail.value; recalcularProgressBar()">
                                 <ion-list-header>
                                   <ion-label>
                                     <p class="question">
@@ -39,13 +37,11 @@
                                   </ion-item>
                                 </div>
                               </ion-radio-group>
-                            </ion-list>
-                          </ng-container>
+                            </ion-list>     
                         </div>
                       </ng-template>
                     </p-accordionTab>
                   </p-accordion>
-                </ng-container>
               </div>
             </div>
         </ion-col>
