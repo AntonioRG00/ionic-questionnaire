@@ -194,32 +194,11 @@ export class RecomendacionComponent implements OnInit {
     
   }
 
-  public getAreasConCategoriasSeleccionadas(): {nombre: string, categorias: Categoria[]}[]{
-
-    let areas = new Array<{nombre: string, categorias: Categoria[]}>();
-
-    this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas
-      .forEach(area => {
-        // Si en el área hay alguna categoría seleccionada la añadimos
-        if(area.categorias.some(categoria => categoria.isChecked)){
-          let length = areas.push({nombre: area.nombre, categorias: []})
-          
-          area.categorias.filter(categoria => categoria.isChecked)
-            .forEach(categoriaSeleccionada => areas[length-1].categorias.push(categoriaSeleccionada))
-        }
-      })
-
-    return areas;
-  }
-
   public generateCategoriasDataPDF(): Array<{type?: string, text?: string, ol?: Array<String>, ul?: Array<String>, style?: string, margin?: Array<Number>}> {
 
     let datosAreas = new Array<{type?: string, text?: string, ol?: Array<String>, ul?: Array<String>, style?: string, margin?: Array<Number>}>();
 
-    // Nos traemos las áreas
-    let areas = this.getAreasConCategoriasSeleccionadas();
-
-    areas.forEach(area => {
+    this.ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas.forEach(area => {
       // Introducimos el nombre del área
       datosAreas.push({text: area.nombre, type: 'none', style: 'listheader'})
 
