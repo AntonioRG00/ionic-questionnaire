@@ -11,14 +11,13 @@
       <ion-row class="ion-justify-content-center">
         <ion-col size="12">
           <p-tabView (onChange)="indexTabPanel = $event.index">
-            <p-tabPanel [header]="area.nombre" *ngFor="let area of getAreasConCategoriasSeleccionadas(); let i = index" [selected]="i == indexTabPanel">
+            <p-tabPanel [header]="area.nombre" *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas; let i = index" [selected]="i == indexTabPanel">
               <div *ngFor="let cat of area.categorias">
                 <ul>
                   <li class="nested-list"> <b>{{cat.nombre}}</b>| {{cat.descripcion}}
                     <ol>
                       <div *ngFor="let pregunta of cat.preguntas">
-                        <ng-container *ngIf="pregunta.perfil.perfil == this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario && 
-                            pregunta.puntuacionRecomendacion >= pregunta.respuestaSeleccionada.puntuacion">
+                        <ng-container *ngIf="pregunta.puntuacionRecomendacion >= pregunta.respuestaSeleccionada.puntuacion">
                             <li [innerHTML]="pregunta.recomendacion"></li>
                           </ng-container>
                         </div>

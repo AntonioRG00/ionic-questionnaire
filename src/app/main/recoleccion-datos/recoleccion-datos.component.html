@@ -1,6 +1,5 @@
 <ion-app>
   <ion-content>
-
     <h1 class="encabezado centrado">{{"SELECT_PROFILE" | translate}}</h1>
     <ion-card>
       <ion-item class="magin10 ion-activated">
@@ -13,9 +12,7 @@
       </ion-item>
     </ion-card>
     <div class="list">
-      <h1 *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario != ''" class="encabezado centrado">
-        {{"SELECT_AREAS" | translate}}</h1>
-
+      <h1 *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario != ''" class="encabezado centrado">{{"SELECT_AREAS" | translate}}</h1>
       <div *ngFor="let area of areasCandidatas">
         <ion-list-header>
           <h2>{{area.nombre}}</h2>
@@ -28,10 +25,7 @@
         </ion-list>
       </div>
     </div>
-
-
   </ion-content>
-
   <ion-footer class="ion-no-border">
     <ion-toolbar>
       <ion-grid>

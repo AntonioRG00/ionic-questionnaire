@@ -19,12 +19,8 @@ export class TicketService {
       idiomaSeleccionado: new Object as Idioma
     },
     recoleccionDatos: {
-      perfilUsuario: ''
-    },
-    cuestionario: {
-
-    },
-    recomendacion: {
+      perfilUsuario: '',
+      idiomaFiltradoCheckedPerfil: new Object as Idioma
     }
   };
 
@@ -80,20 +76,8 @@ export class TicketService {
 
   /** Filtro para los datos 'Cuestionario' del ticket (True si pasa el filtrado) */
   public checkTicketCuestionario(): boolean{
-    let noHayDatosNulos = true;
-
-    if(this.ticketInformation.explicacion.idiomaSeleccionado.areas == null) return false;
-    this.ticketInformation.explicacion.idiomaSeleccionado.areas.forEach(area => 
-      area.categorias.forEach(categoria => categoria.preguntas.forEach(pregunta => {
-          if(categoria.isChecked){
-            if(pregunta.perfil.perfil === this.ticketInformation.recoleccionDatos.perfilUsuario){
-              if(pregunta.respuestaSeleccionada == null){
-                noHayDatosNulos = false;
-              }
-            }
-          }
-        })))
-        
-    return noHayDatosNulos;
+    return !this.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.some(area => area.categorias.some(categoria => 
+      categoria.preguntas.some(pregunta => pregunta.respuestaSeleccionada == null)
+    ))
   }
 }

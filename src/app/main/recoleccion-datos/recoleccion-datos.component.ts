@@ -34,11 +34,41 @@ export class RecoleccionDatosComponent {
 
   public onNextPage(){
     if(this.ticketService.checkTicketRecoleccionDatos()){
+      
+      // Clonamos los datos
+      this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil = 
+        JSON.parse(JSON.stringify(this.ticketService.ticketInformation.explicacion.idiomaSeleccionado))
+
+      this.filtrarDatosQuestionario();
+
       console.log("Redirect to: cuestionario")
       this.router.navigate(['cuestionario'])
     } else {
       console.log("Unasigned required attributes, not redirecting")
     }
+  }
+
+  public filtrarDatosQuestionario(){
+    this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.forEach((area, indexArea, areas) => {
+      if(area.categorias.some(categoria => categoria.isChecked)) {
+        area.categorias.forEach((categoria, indexCategoria, categorias) => {
+          if(categoria.isChecked == null || !categoria.isChecked) {
+            categorias.splice(indexCategoria, 1);
+            this.filtrarDatosQuestionario();
+          } else {
+            categoria.preguntas.forEach((pregunta, indexPregunta, preguntas) => {
+              if(pregunta.perfil.perfil != this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario){
+                preguntas.splice(indexPregunta, 1);
+                this.filtrarDatosQuestionario();
+              }
+            })
+          }
+        })
+      } else {
+        areas.splice(indexArea, 1);
+        this.filtrarDatosQuestionario();
+      }
+    })
   }
 
   public onBackPage(){
