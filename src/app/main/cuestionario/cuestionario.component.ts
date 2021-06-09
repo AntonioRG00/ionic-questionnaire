@@ -55,7 +55,7 @@ export class CuestionarioComponent implements OnInit {
     })))
 
     // Recalculamos el valor de la barra de progreso
-    this.barraProgreso = Math.floor((100/totalPreguntas)*totalPreguntasRespondidas);
+    this.barraProgreso = Math.round((100/totalPreguntas)*totalPreguntasRespondidas);
     console.log(`TotalPreguntas ${totalPreguntas}, Respondidas ${totalPreguntasRespondidas}, Progreso ${this.barraProgreso}`)
   }
 }
