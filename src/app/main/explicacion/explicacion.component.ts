@@ -11,8 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ExplicacionComponent implements OnInit {
 
-  langs: string [] = [];
-  anim: Animation;
+  public langs: string [] = [];
+  public anim: Animation;
 
   constructor(public ticketService: TicketService, private router: Router,
     public alertController: AlertController,private translateService: TranslateService) { 
