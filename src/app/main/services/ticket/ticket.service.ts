@@ -12,8 +12,7 @@ export class TicketService {
   ticketInformation = {
     data: {
       allDataRest: [] = new Array<Idioma>(),
-      idiomasDisponibles: [] = new Array<String>(),
-      perfilesDisponibles: [] = new Array<Perfil>()
+      idiomasDisponibles: [] = new Array<String>()
     },
     explicacion: {
       idiomaSeleccionado: new Object as Idioma
@@ -33,13 +32,7 @@ export class TicketService {
         this.ticketInformation.data.idiomasDisponibles = this.ticketInformation.data.allDataRest.map((idioma) => idioma['nombre'])
         console.log("Idiomas cargados: " + this.ticketInformation.data.idiomasDisponibles)
 
-        // Sacamos los perfiles disponibles
-        restService.getAllPerfiles().subscribe((perfiles) =>{
-          if(perfiles) {
-            this.ticketInformation.data.perfilesDisponibles = perfiles
-            this.splashScreen();
-          }
-        })
+        this.splashScreen();
       }
     })
   }
@@ -76,6 +69,10 @@ export class TicketService {
 
   /** Filtro para los datos 'Cuestionario' del ticket (True si pasa el filtrado) */
   public checkTicketCuestionario(): boolean{
+    if(this.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas == null){
+      return false;
+    }
+    
     return !this.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.some(area => area.categorias.some(categoria => 
       categoria.preguntas.some(pregunta => pregunta.respuestaSeleccionada == null)
     ))

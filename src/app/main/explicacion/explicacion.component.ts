@@ -15,8 +15,7 @@ export class ExplicacionComponent implements OnInit {
   anim: Animation;
 
   constructor(public ticketService: TicketService, private router: Router,
-    public alertController: AlertController,
-    private translateService: TranslateService) { 
+    public alertController: AlertController,private translateService: TranslateService) { 
       this.langs = this.translateService.getLangs();
     }
 
@@ -55,10 +54,5 @@ export class ExplicacionComponent implements OnInit {
 
   public changeLang(event){
     this.translateService.use(event.detail.value);
-    //this.mainPage.getCuestionario();
-    //console.log(this.mainPage.menuPorPasos[0].label)
-    //console.log(this.mainPage.menuPorPasos[0].label)
-    //console.log('La propiedad de main page:' + this.mainPage.propiedad);
-    console.log(event.detail.value);
   }
 }

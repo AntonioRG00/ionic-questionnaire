@@ -4,10 +4,8 @@
     <ion-card>
       <ion-item class="magin10 ion-activated">
         <ion-label>{{"SELECT_PROFILE" | translate}}</ion-label>
-        <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario"
-          (ionChange)="perfilChange($event.target.value)">
-          <ion-select-option *ngFor="let perfil of ticketService.ticketInformation.data.perfilesDisponibles"
-            [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
+        <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="perfilChange($event.target.value)">
+          <ion-select-option *ngFor="let perfil of ticketService.ticketInformation.explicacion.idiomaSeleccionado.perfiles" [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card>

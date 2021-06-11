@@ -23,7 +23,8 @@ import { ChartModule } from 'primeng/chart';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TabViewModule } from 'primeng/tabview';
 import { DividerModule } from 'primeng/divider';
-import {FieldsetModule} from 'primeng/fieldset';
+import { FieldsetModule } from 'primeng/fieldset';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import {FieldsetModule} from 'primeng/fieldset';
     TabViewModule,
     DividerModule,
     CheckboxModule,
+    ScrollPanelModule,
     MainPageRoutingModule,
     AccordionModule,
     ChartModule,
