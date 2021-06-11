@@ -4,24 +4,34 @@
     <ion-card>
       <ion-item class="ion-activated">
         <ion-label>{{"SELECT_PROFILE" | translate}}</ion-label>
-        <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario" (ionChange)="perfilChange($event.target.value)">
-          <ion-select-option *ngFor="let perfil of ticketService.ticketInformation.explicacion.idiomaSeleccionado.perfiles" [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
+        <ion-select [value]="ticketService.ticketInformation.recoleccionDatos.perfilUsuario"
+          (ionChange)="perfilChange($event.target.value)">
+          <ion-select-option
+            *ngFor="let perfil of ticketService.ticketInformation.explicacion.idiomaSeleccionado.perfiles"
+            [value]="perfil.perfil">{{perfil.perfil}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card>
-    <div class="list">
-      <h1 *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario != ''" class="encabezado centrado">{{"SELECT_AREAS" | translate}}</h1>
+    <div *ngIf="ticketService.ticketInformation.recoleccionDatos.perfilUsuario != ''">
+      <h1 class="encabezado centrado">{{"SELECT_AREAS" | translate}}</h1>
+
       <div *ngFor="let area of areasCandidatas">
-        <ion-list-header>
-          <h2>{{area.nombre}}</h2>
-        </ion-list-header>
-        <ion-list>
-          <ion-item *ngFor="let cat of area.categorias">
-            <ion-label>{{cat.nombre}} | {{cat.descripcion}}</ion-label>
-            <ion-checkbox [checked]="cat.isChecked" [(ngModel)]="cat.isChecked"></ion-checkbox>
-          </ion-item>
-        </ion-list>
+        <ion-card>
+          <ion-card-content>
+            <ion-item>
+              <ion-label><b style="font-size: 22px; font-weight: bolder;">  {{area.nombre}} </b></ion-label>
+            </ion-item>
+            <ion-list>
+              <ion-item *ngFor="let cat of area.categorias">
+                <ion-label>{{cat.nombre}} | {{cat.descripcion}}</ion-label>
+                <ion-checkbox [checked]="cat.isChecked" [(ngModel)]="cat.isChecked"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
       </div>
+
+
     </div>
   </ion-content>
   <ion-footer class="ion-no-border">
