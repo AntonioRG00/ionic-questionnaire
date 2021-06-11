@@ -9,12 +9,10 @@
       <ion-row class="ion-justify-content-center">
         <ion-col size="12" size-md="11">
           <p-accordion>
-            <ng-container
-              *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas">
+            <ng-container *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas">
               <ng-container *ngFor="let cat of area.categorias">
                 <p-accordionTab>
                   <ng-template pTemplate="header"><b>{{ cat.nombre }}</b>| {{ cat.descripcion }}</ng-template>
-                  <!-- Questions -->
                   <ng-template pTemplate="content">
                     <div *ngFor="let pregunta of cat.preguntas">
                       <ion-list>
@@ -27,7 +25,6 @@
                               </p>
                             </ion-label>
                           </ion-list-header>
-                          <!-- Answers down below -->
                           <div *ngFor="let respuesta of pregunta.respuestas">
                             <ion-item>
                               <ion-label>
@@ -69,40 +66,3 @@
     </ion-toolbar>
   </ion-footer>
 </ion-app>
-
-<!-- <div class="tab group">
-  <div class="tab">
-    <div *ngFor="let idioma of ticketService.ticketInformation.data.allDataRest">
-      <div *ngFor="let area of idioma.areas">
-        <div *ngFor="let cat of area.categorias">
-          <label for="tab-one" >
-            <p> <b>{{ cat.nombre }} </b> {{ cat.descripcion }}</p>
-          </label>
-          Questions down below
-          <div class="tab-content">
-            <div *ngFor="let pregunta of cat.preguntas">
-              <ion-list>
-                <ion-radio-group allow-empty-selection="false" (ionChange)="respuestaGroupChange($event.detail.value, pregunta)">
-                  <ion-list-header>
-                    <ion-label>
-                      <p class="question">{{ pregunta.pregunta }} </p>
-                    </ion-label>
-                  </ion-list-header>
-                  Answers down below
-                      <div *ngFor="let respuesta of pregunta.respuestas">
-                        <ion-item (click)="showRec(pregunta.recomendacion)">
-                          <ion-label>{{ respuesta.respuesta.respuesta }}</ion-label>
-                          <ion-radio [value]="respuesta"></ion-radio>
-                        </ion-item>
-                      </div>
-                </ion-radio-group>
-              </ion-list>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</div> -->
