@@ -1,49 +1,51 @@
 <ion-app>
   <ion-header class="ion-no-border">
-    <ion-toolbar>  
+    <ion-toolbar>
       <p-progressBar [value]="barraProgreso"></p-progressBar>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-grid>
       <ion-row class="ion-justify-content-center">
-        <ion-col size="12" size-md="10">
-            <div *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas">
-              <div *ngFor="let cat of area.categorias">
-                  <p-accordion>
-                    <p-accordionTab>
-                      <ng-template pTemplate="header"><b>{{ cat.nombre }}</b>| {{ cat.descripcion }}</ng-template>
-                      <!-- Questions -->
-                      <ng-template pTemplate="content">
-                        <div *ngFor="let pregunta of cat.preguntas">
-                            <ion-list>
-                              <ion-radio-group [value]="pregunta.respuestaSeleccionada" allow-empty-selection="false" (ionChange)="pregunta.respuestaSeleccionada = $event.detail.value; recalcularProgressBar()">
-                                <ion-list-header>
-                                  <ion-label>
-                                    <p class="question">
-                                      {{ pregunta.pregunta }}
-                                    </p>
-                                  </ion-label>
-                                </ion-list-header>
-                                <!-- Answers down below -->
-                                <div *ngFor="let respuesta of pregunta.respuestas">
-                                  <ion-item>
-                                    <ion-label >
-                                      <p class="answer">
-                                        {{ respuesta.respuesta.respuesta }}
-                                      </p>
-                                    </ion-label>
-                                    <ion-radio [value]="respuesta"></ion-radio>
-                                  </ion-item>
-                                </div>
-                              </ion-radio-group>
-                            </ion-list>     
-                        </div>
-                      </ng-template>
-                    </p-accordionTab>
-                  </p-accordion>
-              </div>
-            </div>
+        <ion-col size="12" size-md="11">
+          <p-accordion>
+            <ng-container
+              *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas">
+              <ng-container *ngFor="let cat of area.categorias">
+                <p-accordionTab>
+                  <ng-template pTemplate="header"><b>{{ cat.nombre }}</b>| {{ cat.descripcion }}</ng-template>
+                  <!-- Questions -->
+                  <ng-template pTemplate="content">
+                    <div *ngFor="let pregunta of cat.preguntas">
+                      <ion-list>
+                        <ion-radio-group [value]="pregunta.respuestaSeleccionada" allow-empty-selection="false"
+                          (ionChange)="pregunta.respuestaSeleccionada = $event.detail.value; recalcularProgressBar()">
+                          <ion-list-header>
+                            <ion-label>
+                              <p class="question">
+                                {{ pregunta.pregunta }}
+                              </p>
+                            </ion-label>
+                          </ion-list-header>
+                          <!-- Answers down below -->
+                          <div *ngFor="let respuesta of pregunta.respuestas">
+                            <ion-item>
+                              <ion-label>
+                                <p class="answer">
+                                  {{ respuesta.respuesta.respuesta }}
+                                </p>
+                              </ion-label>
+                              <ion-radio [value]="respuesta"></ion-radio>
+                            </ion-item>
+                          </div>
+                        </ion-radio-group>
+                      </ion-list>
+                    </div>
+                  </ng-template>
+                </p-accordionTab>
+              </ng-container>
+            </ng-container>
+          </p-accordion>
         </ion-col>
       </ion-row>
     </ion-grid>

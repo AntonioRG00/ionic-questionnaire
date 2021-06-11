@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
-import { Area, Categoria, Pregunta } from '../services/interfaces/cuestionario';
-import {ProgressBarModule} from 'primeng/progressbar';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-cuestionario',

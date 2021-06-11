@@ -44,6 +44,7 @@ export interface Idioma {
   id: number;
   nombre: string;
   urlImagen: string;
-  areas: Area[]
+  areas: Area[];
+  perfiles: Perfil[];
 }
 
