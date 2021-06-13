@@ -1,14 +1,19 @@
-export interface Respuesta {
+export class Respuesta {
   id: number;
   respuesta: string;
 }
 
-export interface PreguntaRespuesta {
+export class PreguntaRespuesta {
   puntuacion: number;
   respuesta: Respuesta;
+
+  constructor(){
+    this.puntuacion = 0;
+    this.respuesta = new Respuesta;
+  }
 }
 
-export interface Pregunta {
+export class Pregunta {
   id: number;
   pregunta: string;
   recomendacion: string;
@@ -18,12 +23,12 @@ export interface Pregunta {
   respuestas: PreguntaRespuesta[];
 }
 
-export interface Perfil{
+export class Perfil{
   id: number;
   perfil: string;
 }
 
-export interface Categoria {
+export class Categoria {
   id: number;
   nombre: string;
   descripcion: string;
@@ -34,13 +39,13 @@ export interface Categoria {
   isChecked: boolean;
 }
 
-export interface Area {
+export class Area {
   id: number;
   nombre: string;
   categorias: Categoria[];
 }
 
-export interface Idioma {
+export class Idioma {
   id: number;
   nombre: string;
   urlImagen: string;

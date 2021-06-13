@@ -20,10 +20,10 @@ export class MainPage implements OnInit {
 
   ngOnInit() {
     this.menuPorPasos = [
-      {label: this.getExplicacion(), routerLink: '/explicacion'},
-      {label: this.getRecoleccion(), routerLink: '/recoleccionDatos'},
-      {label: this.getCuestionario(), routerLink: '/cuestionario'},
-      {label: this.getResultados(), routerLink: '/recomendacion'}
+      {label: "Explanation", routerLink: '/explicacion'},
+      {label: "Data collection", routerLink: '/recoleccionDatos'},
+      {label: "Questionnaire", routerLink: '/cuestionario'},
+      {label: "Results", routerLink: '/recomendacion'}
     ];
     
     this.menuPorPasosMovil = [
