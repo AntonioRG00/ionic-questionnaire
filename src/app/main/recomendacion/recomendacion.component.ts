@@ -44,13 +44,6 @@ export class RecomendacionComponent implements OnInit {
         this.router.navigate(['cuestionario'])
       }
 
-      // Obtenemos los nombres de las categorías seleccionadas
-      let categoriasChecked = new Array<Categoria>();
-      ticketService.ticketInformation.explicacion.idiomaSeleccionado.areas
-        .forEach(area => area.categorias.filter(categoria => categoria.isChecked)
-        .forEach(categoriaChecked => categoriasChecked.push(categoriaChecked))) 
-      console.log("Categorías checked: " + categoriasChecked);
-
       // Obtenemos la puntuación total de cada categoría y la puntuación máxima posible por categorías seleccionadas
       let puntuacionCategoriasChecked = new Array<number>();
       let puntuacionMaximaPorCategoria = new Array<number>();
@@ -78,7 +71,7 @@ export class RecomendacionComponent implements OnInit {
 
       this.basicData = {
         // Los labels no esta terminado
-        labels: categoriasChecked.map(categoriaChecked => categoriaChecked['nombre']),
+        labels: this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.map(area => area['nombre']),
         datasets: [
             {
               backgroundColor: '#42A5F5',
@@ -214,6 +207,15 @@ export class RecomendacionComponent implements OnInit {
       })
     })
     return datosAreas;
+  }
+
+  public comprobarRecomendacionCategoria(categoria: Categoria): boolean{
+    let puntuacionRespuestas = 0;
+    categoria.preguntas.forEach(x => {
+      puntuacionRespuestas += x.respuestaSeleccionada.puntuacion;
+    })
+
+    return puntuacionRespuestas<=categoria.puntuacion;
   }
 
 }

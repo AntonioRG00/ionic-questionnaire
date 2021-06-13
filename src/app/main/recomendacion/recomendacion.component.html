@@ -4,32 +4,38 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <p>{{"GRAPH_REC_WARNING" | translate}}</p>
+          <h4 style="text-align: center;"><b>{{"GRAPH_REC_WARNING" | translate}}</b></h4>
           <p-divider></p-divider>
         </ion-col>
       </ion-row>
       <ion-row class="ion-justify-content-center">
         <ion-col size="12">
           <p-tabView (onChange)="indexTabPanel = $event.index">
-            <p-tabPanel [header]="area.nombre" *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas; let i = index" [selected]="i == indexTabPanel">
-              <div *ngFor="let cat of area.categorias">
-                <ul>
-                  <li class="nested-list"> <b>{{cat.nombre}}</b>| {{cat.descripcion}}
-                    <ol>
-                      <div *ngFor="let pregunta of cat.preguntas">
+            <p-tabPanel [header]="area.nombre"
+              *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas; let i = index"
+              [selected]="i == indexTabPanel">
+              <ng-container *ngFor="let cat of area.categorias">
+                <ion-card style="margin: -15px; margin-top: 0px; margin-bottom: 5px;">
+                  <ion-item class="ion-activated">
+                    <ion-label><b>{{cat.nombre}}</b>| {{cat.descripcion}}</ion-label>
+                  </ion-item>
+                  <ion-card-content>
+                    <ol style="margin-left: -25px;">
+                      <li style="font-weight: bold !important; font-size: 15px !important;" *ngIf="comprobarRecomendacionCategoria(cat)" [innerHTML]="cat.recomendacion"></li>
+                      <ng-container *ngFor="let pregunta of cat.preguntas">
                         <ng-container *ngIf="pregunta.puntuacionRecomendacion >= pregunta.respuestaSeleccionada.puntuacion">
-                            <li [innerHTML]="pregunta.recomendacion"></li>
-                          </ng-container>
-                        </div>
-                      </ol>
-                    </li>
-                  </ul>
-                  <p-divider></p-divider>
-                </div>
-              </p-tabPanel>
+                          <li style="font-weight: bold !important; font-size: 15px !important;" [innerHTML]="pregunta.recomendacion"></li>
+                        </ng-container>
+                      </ng-container>
+                    </ol>
+                  </ion-card-content>
+                </ion-card>
+              </ng-container>
+            </p-tabPanel>
           </p-tabView>
         </ion-col>
       </ion-row>
+      <p-divider></p-divider>
       <p-fieldset legend="{{ 'GRAPH' | translate}}">
         <ion-row class="ion-justify-content-center">
           <ion-col size="12">
@@ -47,8 +53,6 @@
       </p-fieldset>
     </ion-grid>
   </ion-content>
-
-
   <ion-footer>
     <ion-toolbar>
       <ion-grid>

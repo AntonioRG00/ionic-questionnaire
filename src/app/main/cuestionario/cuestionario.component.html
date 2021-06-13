@@ -1,15 +1,23 @@
 <ion-app>
   <ion-header class="ion-no-border">
     <ion-toolbar>
-      <p-progressBar [value]="barraProgreso"></p-progressBar>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="12">
+          <div style="margin: 5px;">
+            <p-progressBar [value]="barraProgreso"></p-progressBar>
+          </div>
+        </ion-col>
+      </ion-row>
     </ion-toolbar>
   </ion-header>
   <ion-content>
+    <h1 class="encabezado centrado">{{"QUESTIONNAIRE" | translate}}</h1>
     <ion-grid>
       <ion-row class="ion-justify-content-center">
-        <ion-col size="12" size-md="11">
+        <ion-col size="12" size-md="12">
           <p-accordion>
-            <ng-container *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas">
+            <ng-container
+              *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas">
               <ng-container *ngFor="let cat of area.categorias">
                 <p-accordionTab>
                   <ng-template pTemplate="header"><b>{{ cat.nombre }}</b>| {{ cat.descripcion }}</ng-template>
