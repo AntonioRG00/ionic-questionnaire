@@ -21,10 +21,10 @@
                   </ion-item>
                   <ion-card-content>
                     <ol style="margin-left: -25px;">
-                      <li style="font-weight: bold !important; font-size: 15px !important;" *ngIf="comprobarRecomendacionCategoria(cat)" [innerHTML]="cat.recomendacion"></li>
+                      <li style="font-size: 15px !important; color: black" *ngIf="comprobarRecomendacionCategoria(cat)" [innerHTML]="cat.recomendacion"></li>
                       <ng-container *ngFor="let pregunta of cat.preguntas">
                         <ng-container *ngIf="pregunta.puntuacionRecomendacion >= pregunta.respuestaSeleccionada.puntuacion">
-                          <li style="font-weight: bold !important; font-size: 15px !important;" [innerHTML]="pregunta.recomendacion"></li>
+                          <li style="font-size: 15px !important; color: black" [innerHTML]="pregunta.recomendacion"></li>
                         </ng-container>
                       </ng-container>
                     </ol>
