@@ -38,7 +38,7 @@ export class CuestionarioComponent implements OnInit {
           if(copyCategoria != null){
             for (let k = 0; k < copiaDatos.areas[i].categorias[j].preguntas.length; k++) {
               let copyPregunta = copyCategoria.preguntas.find(x => x.id == copiaDatos.areas[i].categorias[j].preguntas[k].id)
-              let indexRespuesta = copyPregunta.respuestas.findIndex(x => x?.respuesta?.id == copyPregunta.respuestaSeleccionada?.respuesta?.id)
+              let indexRespuesta = copyPregunta?.respuestas?.findIndex(x => x?.respuesta?.id == copyPregunta.respuestaSeleccionada?.respuesta?.id)
               if(indexRespuesta != null && indexRespuesta != -1){
                 copiaDatos.areas[i].categorias[j].preguntas[k].respuestaSeleccionada = copiaDatos.areas[i].categorias[j].preguntas[k].respuestas[indexRespuesta];
               }
