@@ -32,5 +32,12 @@
   "STEP_1" : "Explanation",
   "STEP_2" : "Data collection",
   "STEP_3" : "Questionnaire",
-  "STEP_4" : "Results"
+  "STEP_4" : "Results",
+
+  "_PDFMAKE" : "Text to pdf",
+  "PDF_QUESTIONNAIRE": "Questionnaire",
+  "PDF_YOUR_ANSWER" : "Your answer: ",
+  "PDF_YOUR_RESULTS": "Results",
+  "PDF_CHART": "Chart",
+  "PDF_CHART_EXPL" : "Graphic representation of the score obtained in the selected areas. A higher score means a more positive evaluation."
 }

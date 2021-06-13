@@ -32,6 +32,13 @@
   "STEP_1" : "Explicación",
   "STEP_2" : "Recolección de datos",
   "STEP_3" : "Cuestionario",
-  "STEP_4" : "Resultados"
+  "STEP_4" : "Resultados",
+
+  "_PDFMAKE" : "Text to pdf",
+  "PDF_QUESTIONNAIRE": "Cuestionario",
+  "PDF_YOUR_ANSWER" : "Tu respuesta: ",
+  "PDF_YOUR_RESULTS": "Resultado del cuestionario",
+  "PDF_CHART": "Gráfico",
+  "PDF_CHART_EXPL" : "Representación gráfica de la puntuación obtenida en las áreas seleccionadas. Una puntuación más alta significa una evaluación más positiva."
 
 }

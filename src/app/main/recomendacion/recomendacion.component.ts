@@ -10,6 +10,7 @@ import { Area, Categoria, Idioma } from '../services/interfaces/cuestionario';
 import { FilesystemDirectory, Plugins } from '@capacitor/core';
 const { Filesystem } = Plugins;
 import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recomendacion',
@@ -33,7 +34,8 @@ export class RecomendacionComponent implements OnInit {
   constructor(public ticketService: TicketService, private router: Router,
     public alertController: AlertController,
     public platform: Platform,
-    public fileOpener: FileOpener) {
+    public fileOpener: FileOpener,
+    public translateService: TranslateService) {
 
     // Volver de proceso ya que no ha pasado el filtro
     if (!ticketService.checkTicketCuestionario()) {
@@ -108,7 +110,7 @@ export class RecomendacionComponent implements OnInit {
     //Download pdf
     const docDef = {
       content: [
-        { text: 'Cuestionario', style: 'header' },
+        { text: this.getTextoPdf("PDF_QUESTIONNAIRE"), style: 'header' },
         {
           canvas: [
             {
@@ -190,19 +192,23 @@ export class RecomendacionComponent implements OnInit {
         // Introducimos el nombre de la categoría
         datosAreas.push({ text: '- ' + categoria.nombre, style: 'subsubheader' })
 
+        datosAreas.push({ text: categoria.explicacion})
+
         categoria.preguntas.forEach(pregunta => {
           // Introducimos el nombre de la pregunta
           datosAreas.push({ text: pregunta.pregunta, margin: [0, 5] })
 
           // Introducimos la respuesta seleccionada
-          datosAreas.push({ text: 'Respuesta: ' + pregunta.respuestaSeleccionada.respuesta.respuesta })
+          //datosAreas.push({ text: 'Tu respuesta: ' + pregunta.respuestaSeleccionada.respuesta.respuesta })
+          // NO HAS PROBADO ESTO
+          datosAreas.push({text: [{text: this.getTextoPdf("PDF_YOUR_ANSWER"), bold: true}, {text: pregunta.respuestaSeleccionada.respuesta.respuesta}], })
         })
       })
     })
     datosAreas.push({text: '', pageBreak: 'after'})
 
     // Mostramos las recomendaciones agrupadas por área
-    datosAreas.push({ text: 'Recomendaciones', style: 'header' })
+    datosAreas.push({ text: this.getTextoPdf("PDF_YOUR_RESULTS"), style: 'header' })
     datosAreas.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 500, y2: 0, lineWidth: 1 }] })
     this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.forEach(area => {
       // Introducimos el nombre del área
@@ -227,8 +233,9 @@ export class RecomendacionComponent implements OnInit {
     })
 
     // Introducimos el chart
-    datosAreas.push({text: '', pageBreak: 'after'})
-    datosAreas.push({ text: 'Gráfico', style: 'header' })
+    datosAreas.push({ text: this.getTextoPdf("PDF_CHART"), fontSize: 20, bold: true, margin: [0, 20, 0, 10]})
+    datosAreas.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 500, y2: 0, lineWidth: 1 }] })
+    datosAreas.push({ text: this.getTextoPdf("PDF_CHART_EXPL"), margin: [0, 10, 0, 10]})
     datosAreas.push({width: 500,image: RecomendacionComponent.image})
 
     return datosAreas;
@@ -243,11 +250,20 @@ export class RecomendacionComponent implements OnInit {
     return puntuacionRespuestas <= categoria.puntuacion;
   }
 
+  public getTextoPdf(key){
+    let cuestionario;
+    this.translateService.stream(key).subscribe(
+      res => cuestionario = res
+    );
+    return cuestionario;
+  }
+
+
 }
 
 class EstructuraPDF {
   type?: string
-  text?: string
+  text?: any //aqui habia un string
   ol?: Array<String>
   ul?: Array<String>
   style?: string
@@ -256,4 +272,8 @@ class EstructuraPDF {
   pageBreak?: string
   image?: string
   width?: number
+  fontSize?: number
+  bold?: boolean
+  any?: any
+
 }

@@ -18,7 +18,7 @@
   "SELECT_PROFILE": "Scegli un profilo",
   "SELECT_AREAS": "Scegli le aree",
 
-  "QUESTIONNAIRE": "Risultati",
+  "QUESTIONNAIRE": "Questionario",
 
   "_STEP_4": "PAGE STEP 4",
   "RESULTS" : "Risultati",
@@ -32,6 +32,13 @@
   "STEP_1" : "Nota esplicativa",
   "STEP_2" : "Raccolta dei dati ",
   "STEP_3" : "Questionario",
-  "STEP_4" : "Risultati"
+  "STEP_4" : "Risultati",
+
+  "_PDFMAKE" : "Text to pdf",
+  "PDF_QUESTIONNAIRE": "Questionario",
+  "PDF_YOUR_ANSWER" : "Tua risposta: ",
+  "PDF_YOUR_RESULTS": "Risultati",
+  "PDF_CHART": "Grafico",
+  "PDF_CHART_EXPL" : "Rappresentazione grafica dei punteggi ottenuti nelle aree scelte. Un punteggio più alto significa una valutazione più positiva."
 
 }
