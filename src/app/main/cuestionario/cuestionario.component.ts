@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
-import { Idioma } from '../services/interfaces/cuestionario';
+import { Idioma, PreguntaRespuesta, Respuesta } from '../services/interfaces/cuestionario';
 
 @Component({
   selector: 'app-cuestionario',
@@ -25,35 +25,42 @@ export class CuestionarioComponent implements OnInit {
     let datoClonado: Idioma = JSON.parse(JSON.stringify(this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil));
     
     this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil =
-      JSON.parse(JSON.stringify(this.ticketService.ticketInformation.explicacion.idiomaSeleccionado))
-
-    this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.forEach(area => {
-      if(datoClonado?.areas?.some(x => x.id == area.id)){ // Comparamos que ese área ya estaba seleccionada y no null
-        area.categorias.forEach(categoria => {
-          datoClonado.areas.forEach(clonArea => {
-            clonArea.categorias.forEach(clonCategoria => {
-              if(clonArea.id == area.id && clonCategoria.id == categoria.id){
-                categoria = clonCategoria;
-              }
-            })
-          })
-        })
-      }
-    })
-
+    JSON.parse(JSON.stringify(this.ticketService.ticketInformation.explicacion.idiomaSeleccionado))
+    
     this.filtrarDatosQuestionario();
+
+    let copiaDatos = this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil;
+    for (let i = 0; i < copiaDatos.areas.length; i++) {
+      let copyArea = datoClonado.areas?.find(x => x.id == copiaDatos.areas[i].id)
+      if(copyArea != null){
+        for (let j = 0; j < copiaDatos.areas[i].categorias.length; j++) {
+          let copyCategoria = copyArea.categorias.find(x => x.id == copiaDatos.areas[i].categorias[j].id)
+          if(copyCategoria != null){
+            for (let k = 0; k < copiaDatos.areas[i].categorias[j].preguntas.length; k++) {
+              let copyPregunta = copyCategoria.preguntas.find(x => x.id == copiaDatos.areas[i].categorias[j].preguntas[k].id)
+              let indexRespuesta = copyPregunta.respuestas.findIndex(x => x?.respuesta?.id == copyPregunta.respuestaSeleccionada?.respuesta?.id)
+              if(indexRespuesta != null && indexRespuesta != -1){
+                copiaDatos.areas[i].categorias[j].preguntas[k].respuestaSeleccionada = copiaDatos.areas[i].categorias[j].preguntas[k].respuestas[indexRespuesta];
+              }
+            }
+          }
+        }
+      }
+    }
+
+    this.recalcularProgressBar();
   }
 
-  public filtrarDatosQuestionario(){
+  public filtrarDatosQuestionario() {
     this.ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas.forEach((area, indexArea, areas) => {
-      if(area.categorias.some(categoria => categoria.isChecked)) {
+      if (area.categorias.some(categoria => categoria.isChecked)) {
         area.categorias.forEach((categoria, indexCategoria, categorias) => {
-          if(categoria.isChecked == null || !categoria.isChecked) {
+          if (categoria.isChecked == null || !categoria.isChecked) {
             categorias.splice(indexCategoria, 1);
             this.filtrarDatosQuestionario();
           } else {
             categoria.preguntas.forEach((pregunta, indexPregunta, preguntas) => {
-              if(pregunta.perfil.perfil != this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario){
+              if (pregunta.perfil.perfil != this.ticketService.ticketInformation.recoleccionDatos.perfilUsuario) {
                 preguntas.splice(indexPregunta, 1);
                 this.filtrarDatosQuestionario();
               }

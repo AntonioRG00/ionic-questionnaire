@@ -14,7 +14,7 @@
                 <p-accordionTab>
                   <ng-template pTemplate="header"><b>{{ cat.nombre }}</b>| {{ cat.descripcion }}</ng-template>
                   <ng-template pTemplate="content">
-                    <div *ngFor="let pregunta of cat.preguntas">
+                    <ng-container *ngFor="let pregunta of cat.preguntas">
                       <ion-list>
                         <ion-radio-group [value]="pregunta.respuestaSeleccionada" allow-empty-selection="false"
                           (ionChange)="pregunta.respuestaSeleccionada = $event.detail.value; recalcularProgressBar()">
@@ -25,7 +25,7 @@
                               </p>
                             </ion-label>
                           </ion-list-header>
-                          <div *ngFor="let respuesta of pregunta.respuestas">
+                          <ng-container *ngFor="let respuesta of pregunta.respuestas">
                             <ion-item>
                               <ion-label>
                                 <p class="answer">
@@ -34,10 +34,10 @@
                               </ion-label>
                               <ion-radio [value]="respuesta"></ion-radio>
                             </ion-item>
-                          </div>
+                          </ng-container>
                         </ion-radio-group>
                       </ion-list>
-                    </div>
+                    </ng-container>
                   </ng-template>
                 </p-accordionTab>
               </ng-container>
