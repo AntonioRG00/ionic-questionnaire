@@ -2,7 +2,7 @@
 <br />
 <p align="center">
 
-  <h3 align="center">Ionic-Angular Questionnaire</h3>
+  <h3 align="center">Ionic Questionnaire</h3>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
