@@ -12,6 +12,7 @@
   "STEP_FOUR_SELECT": "4. Guarda i tuoi risultati! Potrai salvarli sul tuo dispositivo",
   "STEP_FOUR_EXPL" : "Dopo aver compilato l'intero questionario potrai scaricare i risultati",
   "FINAL_SELECT_COUNTR" : "Scegli un Paese",
+  "ERR_SELECT_LANG" : "Scegli un Paese",
 
   "_STEP 2": "PAGE STEP 2",
   "SELECT_PROFILE": "Scegli un profilo",

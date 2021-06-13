@@ -30,8 +30,8 @@ export class ExplicacionComponent implements OnInit {
 
       // TODO UN ALERT EN CADA INPUT ESTÁ MEJOR
       const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'Seleccione un idioma',
+        header: 'Error!',
+        message: this.getMensajeError(),
         buttons: ['OK']
       });
 
@@ -54,5 +54,14 @@ export class ExplicacionComponent implements OnInit {
 
   public changeLang(event){
     this.translateService.use(event.detail.value);
+  }
+
+  // Si no se selecciona un idioma para filtrar los datos muestra el mensaje
+  public getMensajeError(): string{
+    let mensaje;
+    this.translateService.stream("ERR_SELECT_LANG").subscribe(
+      res => mensaje = res
+    );
+    return mensaje;
   }
 }
