@@ -9,7 +9,7 @@
       <ion-card>
         <ion-item class="ion-activated">
           <ion-label>{{"SELECT_LANGUAGE" | translate}}</ion-label>
-          <ion-select [ngModel]="idioma" (ionChange)="changeLang($event)">
+          <ion-select (ionChange)="changeLang($event)">
             <ion-select-option *ngFor="let lang of langs">{{lang}}</ion-select-option>
           </ion-select>
         </ion-item>
