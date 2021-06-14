@@ -137,7 +137,9 @@ export class RecomendacionComponent implements OnInit {
         listheader: {
           fontSize: 18,
           bold: true,
-          margin: [0, 10, 0, 5]
+          margin: [0, 10, 0, 5],
+          alignment: 'center',
+          decoration: 'underline'
         },
         subsubheader: {
           fontSize: 16,
@@ -190,17 +192,15 @@ export class RecomendacionComponent implements OnInit {
 
       area.categorias.forEach(categoria => {
         // Introducimos el nombre de la categoría
-        datosAreas.push({ text: '- ' + categoria.nombre, style: 'subsubheader' })
+        datosAreas.push({ ul: [categoria.nombre], style: 'subsubheader' })
 
-        datosAreas.push({ text: categoria.explicacion, margin: [0, 0, 0, 10], alignment: 'justify'})
+        datosAreas.push({ text: htmlToText("<b style='font-size: 10px;'>"+categoria.explicacion+"</b>", margin: [0, 0, 0, 10], alignment: 'justify'})
 
         categoria.preguntas.forEach(pregunta => {
           // Introducimos el nombre de la pregunta
           datosAreas.push({ text: pregunta.pregunta, margin: [0, 5], alignment: 'justify' })
 
           // Introducimos la respuesta seleccionada
-          //datosAreas.push({ text: 'Tu respuesta: ' + pregunta.respuestaSeleccionada.respuesta.respuesta })
-          // NO HAS PROBADO ESTO
           datosAreas.push({text: [{text: this.getTextoPdf("PDF_YOUR_ANSWER"), bold: true}, {text: pregunta.respuestaSeleccionada.respuesta.respuesta}], })
         })
       })
@@ -216,7 +216,8 @@ export class RecomendacionComponent implements OnInit {
 
       area.categorias.forEach(categoria => {
         // Introducimos el nombre de la categoría
-        datosAreas.push({ text: '- ' + categoria.nombre, style: 'subsubheader' })
+        datosAreas.push({ul: [categoria.nombre], style: 'subsubheader' })
+        datosAreas.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 500, y2: 0, lineWidth: 0.5 }] })
         
         // Sacamos las recomendaciones
         let arrayRecomendaciones = new Array<String>();
