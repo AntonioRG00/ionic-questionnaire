@@ -4,6 +4,7 @@ import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
 import { RestService } from '../services/apirest/rest.service'
 import { Idioma, Area, Categoria } from '../services/interfaces/cuestionario';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recoleccion-datos',
@@ -16,7 +17,8 @@ export class RecoleccionDatosComponent {
   public areasCandidatas: Area[] = new Array<Area>();
 
   constructor(public ticketService: TicketService, private router: Router,
-    public alertController: AlertController, private restService: RestService) {
+    public alertController: AlertController, private restService: RestService,
+    public translateService: TranslateService) {
 
     // Volver de proceso ya que no ha pasado el filtro
     if(!ticketService.checkTicketExplicacion()){
@@ -32,13 +34,22 @@ export class RecoleccionDatosComponent {
     this.perfilChange(ticketService.ticketInformation.recoleccionDatos.perfilUsuario)
   }
 
-  public onNextPage(){
+  public async onNextPage(){
     if(this.ticketService.checkTicketRecoleccionDatos()){
       console.log("Redirect to: cuestionario")
       this.router.navigate(['cuestionario'])
     } else {
       console.log("Unasigned required attributes, not redirecting")
+      const alert = await this.alertController.create({
+        header: 'Error!',
+        message: this.getMensajeError(),
+        buttons: ['OK']
+      });
+
+      await alert.present();
     }
+
+    
   }
 
   public onBackPage(){
@@ -63,6 +74,14 @@ export class RecoleccionDatosComponent {
         this.areasCandidatas.push(areaAux)
       }
     })
+  }
+
+  public getMensajeError(): string{
+    let mensaje;
+    this.translateService.stream("ERR_SELECT_PROF").subscribe(
+      res => mensaje = res
+    );
+    return mensaje;
   }
 }
 

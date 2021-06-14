@@ -17,6 +17,10 @@
   "_STEP 2": "PAGE STEP 2",
   "SELECT_PROFILE": "Select a profile",
   "SELECT_AREAS": "Select areas",
+  "ERR_SELECT_PROF": "Select a profile and categories",
+
+  "_STEP_3" : "PAGE STEP 3",
+  "ERR_ANSWER" : "Answer all questions",
 
   "QUESTIONNAIRE": "Questionnaire",
 

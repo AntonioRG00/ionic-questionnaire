@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TicketService } from '../services/ticket/ticket.service';
 import { AlertController } from '@ionic/angular';
 import { Idioma, PreguntaRespuesta, Respuesta } from '../services/interfaces/cuestionario';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cuestionario',
@@ -14,7 +15,7 @@ export class CuestionarioComponent implements OnInit {
   public barraProgreso = 0;
 
   constructor(public ticketService: TicketService, private router: Router,
-    public alertController: AlertController) {
+    public alertController: AlertController, public translateService: TranslateService) {
 
     // Volver de proceso ya que no ha pasado el filtro
     if (!ticketService.checkTicketRecoleccionDatos()) {
@@ -76,12 +77,19 @@ export class CuestionarioComponent implements OnInit {
 
   ngOnInit() { }
 
-  public onNextPage() {
+  public async onNextPage() {
     if (this.ticketService.checkTicketCuestionario()) {
       console.log("Redirect to: recomendacion")
       this.router.navigate(['recomendacion'])
     } else {
       console.log("Unasigned required attributes, not redirecting")
+      const alert = await this.alertController.create({
+        header: 'Error!',
+        message: this.getMensajeError(),
+        buttons: ['OK']
+      });
+
+      await alert.present();
     }
   }
 
@@ -104,5 +112,13 @@ export class CuestionarioComponent implements OnInit {
     // Recalculamos el valor de la barra de progreso
     this.barraProgreso = Math.round((100 / totalPreguntas) * totalPreguntasRespondidas);
     console.log(`TotalPreguntas ${totalPreguntas}, Respondidas ${totalPreguntasRespondidas}, Progreso ${this.barraProgreso}`)
+  }
+
+  public getMensajeError(): string{
+    let mensaje;
+    this.translateService.stream("ERR_ANSWER").subscribe(
+      res => mensaje = res
+    );
+    return mensaje;
   }
 }

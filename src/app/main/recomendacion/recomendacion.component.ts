@@ -192,11 +192,11 @@ export class RecomendacionComponent implements OnInit {
         // Introducimos el nombre de la categoría
         datosAreas.push({ text: '- ' + categoria.nombre, style: 'subsubheader' })
 
-        datosAreas.push({ text: categoria.explicacion})
+        datosAreas.push({ text: categoria.explicacion, margin: [0, 0, 0, 10], alignment: 'justify'})
 
         categoria.preguntas.forEach(pregunta => {
           // Introducimos el nombre de la pregunta
-          datosAreas.push({ text: pregunta.pregunta, margin: [0, 5] })
+          datosAreas.push({ text: pregunta.pregunta, margin: [0, 5], alignment: 'justify' })
 
           // Introducimos la respuesta seleccionada
           //datosAreas.push({ text: 'Tu respuesta: ' + pregunta.respuestaSeleccionada.respuesta.respuesta })
@@ -228,7 +228,7 @@ export class RecomendacionComponent implements OnInit {
         })
 
         // Introducimos las recomendaciones
-        arrayRecomendaciones.forEach((x, i) => datosAreas.push({text: htmlToText(`<span>${i+1}. </span>`+x), margin: [0, 5]}))
+        arrayRecomendaciones.forEach((x, i) => datosAreas.push({text: htmlToText(`<span>${i+1}. </span>`+x), margin: [0, 5], alignment: 'justify'}))
       })
     })
 
@@ -275,5 +275,6 @@ class EstructuraPDF {
   fontSize?: number
   bold?: boolean
   any?: any
+  alignment?: string
 
 }
