@@ -20,6 +20,7 @@
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#run-it-as-an-android-application">Run it in Android</a></li>
+        <li><a href="#run-in-production-mode">Run in production mode</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -87,7 +88,12 @@ Install [NodeJS](https://nodejs.org/es/)
 4. Run in virtual device or Android device.
 For more information about running this app in a Android device, check [Ionic's documentacion](https://ionicframework.com/docs/developing/android)
 
+### Run in production mode
 
+  ``` sh
+  ionic build --prod --release
+  ```
+This will create a folder named 'www' inside the project. This folder will contain the build in production mode.
 
 <!-- USAGE EXAMPLES -->
 ## Usage

@@ -193,12 +193,12 @@ export class RecomendacionComponent implements OnInit {
       area.categorias.forEach(categoria => {
         // Introducimos el nombre de la categoría
         datosAreas.push({ ul: [categoria.nombre], style: 'subsubheader' })
-        
-        datosAreas.push({ text: htmlToText("<b style='font-size: 10px;'>"+categoria.explicacion+"</b>")})
+
+        datosAreas.push({ text: htmlToText("<b style='font-size: 10px;'>"+categoria.explicacion+"</b>", margin: [0, 0, 0, 10], alignment: 'justify'})
 
         categoria.preguntas.forEach(pregunta => {
           // Introducimos el nombre de la pregunta
-          datosAreas.push({ text: pregunta.pregunta, margin: [0, 5] })
+          datosAreas.push({ text: pregunta.pregunta, margin: [0, 5], alignment: 'justify' })
 
           // Introducimos la respuesta seleccionada
           datosAreas.push({text: [{text: this.getTextoPdf("PDF_YOUR_ANSWER"), bold: true}, {text: pregunta.respuestaSeleccionada.respuesta.respuesta}], })
@@ -229,7 +229,7 @@ export class RecomendacionComponent implements OnInit {
         })
 
         // Introducimos las recomendaciones
-        arrayRecomendaciones.forEach((x, i) => datosAreas.push({text: htmlToText(`<span>${i+1}. </span>`+x), margin: [0, 5]}))
+        arrayRecomendaciones.forEach((x, i) => datosAreas.push({text: htmlToText(`<span>${i+1}. </span>`+x), margin: [0, 5], alignment: 'justify'}))
       })
     })
 
@@ -276,5 +276,6 @@ class EstructuraPDF {
   fontSize?: number
   bold?: boolean
   any?: any
+  alignment?: string
 
 }
