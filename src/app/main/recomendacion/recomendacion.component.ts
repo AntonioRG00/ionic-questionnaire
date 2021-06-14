@@ -194,7 +194,7 @@ export class RecomendacionComponent implements OnInit {
         // Introducimos el nombre de la categoría
         datosAreas.push({ ul: [categoria.nombre], style: 'subsubheader' })
 
-        datosAreas.push({ text: htmlToText("<b style='font-size: 10px;'>"+categoria.explicacion+"</b>", margin: [0, 0, 0, 10], alignment: 'justify'})
+        datosAreas.push({ text: categoria.explicacion, margin: [0, 0, 0, 10], alignment: 'justify'})
 
         categoria.preguntas.forEach(pregunta => {
           // Introducimos el nombre de la pregunta
@@ -217,7 +217,6 @@ export class RecomendacionComponent implements OnInit {
       area.categorias.forEach(categoria => {
         // Introducimos el nombre de la categoría
         datosAreas.push({ul: [categoria.nombre], style: 'subsubheader' })
-        datosAreas.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 500, y2: 0, lineWidth: 0.5 }] })
         
         // Sacamos las recomendaciones
         let arrayRecomendaciones = new Array<String>();
