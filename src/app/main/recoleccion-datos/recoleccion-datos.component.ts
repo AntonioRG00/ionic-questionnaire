@@ -26,7 +26,7 @@ export class RecoleccionDatosComponent {
     }
 
     // Sacamos las categorías seleccionadas anteriormente
-    // console.log("Selected Categorias:" + this.ticketService.ticketInformation.data.allDataRest
+     console.log("Selected Categorias:" + this.ticketService.ticketInformation.data.allDataRest
       .map((idioma) => idioma['areas'].map((area) => area['categorias'].map((categoria) =>
         categoria.isChecked ? categoria.nombre:"").join(" ")).join("")).join(""));
     
