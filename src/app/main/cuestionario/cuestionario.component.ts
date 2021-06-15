@@ -79,10 +79,10 @@ export class CuestionarioComponent implements OnInit {
 
   public async onNextPage() {
     if (this.ticketService.checkTicketCuestionario()) {
-      console.log("Redirect to: recomendacion")
+      //console.log("Redirect to: recomendacion")
       this.router.navigate(['recomendacion'])
     } else {
-      console.log("Unasigned required attributes, not redirecting")
+      //console.log("Unasigned required attributes, not redirecting")
       const alert = await this.alertController.create({
         header: 'Error!',
         message: this.getMensajeError(),
@@ -94,7 +94,7 @@ export class CuestionarioComponent implements OnInit {
   }
 
   public onBackPage() {
-    console.log("Redirect to: recoleccionDatos")
+    //console.log("Redirect to: recoleccionDatos")
     this.router.navigate(['recoleccionDatos'])
   }
 
@@ -111,7 +111,7 @@ export class CuestionarioComponent implements OnInit {
 
     // Recalculamos el valor de la barra de progreso
     this.barraProgreso = Math.round((100 / totalPreguntas) * totalPreguntasRespondidas);
-    console.log(`TotalPreguntas ${totalPreguntas}, Respondidas ${totalPreguntasRespondidas}, Progreso ${this.barraProgreso}`)
+    //console.log(`TotalPreguntas ${totalPreguntas}, Respondidas ${totalPreguntasRespondidas}, Progreso ${this.barraProgreso}`)
   }
 
   public getMensajeError(): string{

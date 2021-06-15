@@ -26,7 +26,7 @@ export class RecoleccionDatosComponent {
     }
 
     // Sacamos las categorías seleccionadas anteriormente
-    console.log("Selected Categorias:" + this.ticketService.ticketInformation.data.allDataRest
+    // console.log("Selected Categorias:" + this.ticketService.ticketInformation.data.allDataRest
       .map((idioma) => idioma['areas'].map((area) => area['categorias'].map((categoria) =>
         categoria.isChecked ? categoria.nombre:"").join(" ")).join("")).join(""));
     
@@ -36,10 +36,10 @@ export class RecoleccionDatosComponent {
 
   public async onNextPage(){
     if(this.ticketService.checkTicketRecoleccionDatos()){
-      console.log("Redirect to: cuestionario")
+      // console.log("Redirect to: cuestionario")
       this.router.navigate(['cuestionario'])
     } else {
-      console.log("Unasigned required attributes, not redirecting")
+      // console.log("Unasigned required attributes, not redirecting")
       const alert = await this.alertController.create({
         header: 'Error!',
         message: this.getMensajeError(),
@@ -53,7 +53,7 @@ export class RecoleccionDatosComponent {
   }
 
   public onBackPage(){
-    console.log("Redirect to: explicacion")
+    // console.log("Redirect to: explicacion")
     this.router.navigate(['explicacion'])
   }
 
@@ -70,7 +70,7 @@ export class RecoleccionDatosComponent {
         areaAux.nombre = area.nombre
         areaAux.id = area.id
 
-        console.log("Pushed Area: " + areaAux)
+        // console.log("Pushed Area: " + areaAux)
         this.areasCandidatas.push(areaAux)
       }
     })

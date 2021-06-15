@@ -30,7 +30,7 @@ export class TicketService {
 
         // Sacamos los idiomas disponibles
         this.ticketInformation.data.idiomasDisponibles = this.ticketInformation.data.allDataRest.map((idioma) => idioma['nombre'])
-        console.log("Idiomas cargados: " + this.ticketInformation.data.idiomasDisponibles)
+        // console.log("Idiomas cargados: " + this.ticketInformation.data.idiomasDisponibles)
 
         this.splashScreen();
       }

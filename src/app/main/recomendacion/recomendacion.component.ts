@@ -54,11 +54,11 @@ export class RecomendacionComponent implements OnInit {
         puntuacionMaximaPorCategoria[index] += pregunta.respuestas[pregunta.respuestas.length - 1].puntuacion
       }))
     })
-    console.log("Puntuación total por categoría: " + puntuacionCategoriasChecked)
-    console.log("Puntuaciones máximas posibles por categoría: " + puntuacionMaximaPorCategoria)
+    // console.log("Puntuación total por categoría: " + puntuacionCategoriasChecked)
+    // console.log("Puntuaciones máximas posibles por categoría: " + puntuacionMaximaPorCategoria)
 
     let puntuacionMaxima = Math.max.apply(null, puntuacionMaximaPorCategoria);
-    console.log("Puntuación máxima: " + puntuacionMaxima)
+    // console.log("Puntuación máxima: " + puntuacionMaxima)
 
     // Recalculamos las demás puntuaciones en base a la más alta
     for (let i = 0; i < puntuacionCategoriasChecked.length; i++) {
@@ -157,7 +157,7 @@ export class RecomendacionComponent implements OnInit {
 
 
     if (this.platform.is('cordova')) {
-      console.log('this platform is cordova')
+      // console.log('this platform is cordova')
       this.pdfObject.getBase64(async (data) => {
         try {
           let path = `pdf/Results_${Date.now()}.pdf`;
@@ -175,7 +175,7 @@ export class RecomendacionComponent implements OnInit {
         }
       });
     } else {
-      console.log('this platform is desktop')
+      // console.log('this platform is desktop')
       this.pdfObject.download(pdfName);
     }
 

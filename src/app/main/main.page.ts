@@ -35,7 +35,6 @@ export class MainPage implements OnInit {
   }
 
   public getExplicacion(): string{
-    console.log('Calling getExplicacion')
     let explicacion;
     this.translateService.stream("STEP_1").subscribe(
       res => explicacion = res

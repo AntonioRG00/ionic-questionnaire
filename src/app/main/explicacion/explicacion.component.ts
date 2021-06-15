@@ -23,10 +23,10 @@ export class ExplicacionComponent implements OnInit {
 
   async onNextPage(){
     if(this.ticketService.checkTicketExplicacion()){
-      console.log("Redirect to: recoleccionDatos")
+      //console.log("Redirect to: recoleccionDatos")
       this.router.navigate(['recoleccionDatos'])
     } else {
-      console.log("Unasigned required attributes, not redirecting")
+      //console.log("Unasigned required attributes, not redirecting")
 
       // TODO UN ALERT EN CADA INPUT ESTÁ MEJOR
       const alert = await this.alertController.create({
@@ -41,7 +41,7 @@ export class ExplicacionComponent implements OnInit {
   }
 
   public onIdiomaSelectChange(languaje: string){
-    console.log("Languaje selected: " + languaje)
+    // console.log("Languaje selected: " + languaje)
 
     // Guardamos el idioma seleccionado en el ticket
     this.ticketService.ticketInformation.explicacion.idiomaSeleccionado = 
