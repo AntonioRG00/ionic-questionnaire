@@ -13,8 +13,4 @@ export class RestService {
   public getAllData(): Observable<Idioma[]>{
     return this.httpClient.get<Idioma[]>('https://questionnaire-spring-rest.herokuapp.com/rest/all');
   }
-
-  public getAllPerfiles(): Observable<Perfil[]>{
-    return this.httpClient.get<Perfil[]>('https://questionnaire-spring-rest.herokuapp.com/rest/perfiles');
-  }
 }
