@@ -1,14 +1,10 @@
-<div
-  class="app-splash-screen"
-  [ngStyle]="{ left: windowWidth }"
-  *ngIf="showSplash"
->
+<div class="app-splash-screen" [ngStyle]="{ left: windowWidth }" *ngIf="showSplash">
   <div class="app-splash-inner">
     <div class="app-logo"></div>
     <div class="app-label">Questionnaire</div>
     <div class="app-loader"></div>
     <div class="text-loader" id="loadingtext">Loading data...</div>
-    <div class="api-failed" id="error">Ocurrió un fallo. Compruebe su conexión y reinicie la aplicación.</div>
-    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <div class="api-failed" id="error">An error occurred. Check your connection and restart the application. </div>
+    <ion-progress-bar type="indeterminate" id="loadingbar"></ion-progress-bar>
   </div>
 </div>

@@ -34,6 +34,16 @@ export class TicketService {
 
         this.splashScreen();
       }
+      
+      
+    },
+    (error) => {
+      if (error){
+        document.getElementById('loadingtext').style.display = 'none';
+        document.getElementById('loadingbar').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+      }
+      
     })
   }
 
