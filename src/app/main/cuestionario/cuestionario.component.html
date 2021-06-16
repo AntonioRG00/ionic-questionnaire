@@ -20,7 +20,7 @@
               *ngFor="let area of ticketService.ticketInformation.recoleccionDatos.idiomaFiltradoCheckedPerfil.areas">
               <ng-container *ngFor="let cat of area.categorias">
                 <p-accordionTab>
-                  <ng-template pTemplate="header"><b>{{ cat.nombre }}</b>| {{ cat.descripcion }}</ng-template>
+                  <ng-template pTemplate="header">{{ cat.nombre }} | {{ cat.descripcion }}</ng-template>
                   <ng-template pTemplate="content">
                     <ng-container *ngFor="let pregunta of cat.preguntas">
                       <ion-list>
